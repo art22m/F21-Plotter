@@ -6,21 +6,18 @@
 //
 
 import Cocoa
+import Foundation
+import Charts
 
 class ViewController: NSViewController {
-
-    override func viewDidLoad() {
+    @IBOutlet var lineChartView: LineChartView!
+    
+    override open func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
+        
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
+    
+    override open func viewWillAppear() {
     }
-
-
 }
-

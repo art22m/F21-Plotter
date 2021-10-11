@@ -1,4 +1,4 @@
-framework module Pods_ComputationalPracticum {
+module Pods_ComputationalPracticum {
   umbrella header "Pods-ComputationalPracticum-umbrella.h"
 
   export *

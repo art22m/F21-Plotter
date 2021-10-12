@@ -8,21 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		E4A1B154F66335A5805AE5A6 /* libPods-ComputationalPracticum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5555D5197193D75C5729F3 /* libPods-ComputationalPracticum.a */; };
+		E528B90D271605F500229635 /* ImprovedEulerMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528B90C271605F500229635 /* ImprovedEulerMethod.swift */; };
+		E528B91227162D2400229635 /* PlotterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528B91127162D2400229635 /* PlotterModel.swift */; };
+		E528B91427162EDC00229635 /* RungeKuttaMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528B91327162EDC00229635 /* RungeKuttaMethod.swift */; };
 		E53D9ADD2714C18100729B9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53D9ADC2714C18100729B9E /* AppDelegate.swift */; };
 		E53D9ADF2714C18100729B9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53D9ADE2714C18100729B9E /* ViewController.swift */; };
 		E53D9AE12714C18300729B9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E53D9AE02714C18300729B9E /* Assets.xcassets */; };
 		E53D9AE42714C18300729B9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53D9AE22714C18300729B9E /* Main.storyboard */; };
 		E572E01D2714E4710090D934 /* INumericalMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E01C2714E4710090D934 /* INumericalMethod.swift */; };
-		E572E0202714E4AD0090D934 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E01F2714E4AD0090D934 /* Point.swift */; };
 		E572E0222714E6450090D934 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E0212714E6450090D934 /* Grid.swift */; };
 		E572E0242714E9380090D934 /* IDifferentialEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E0232714E9380090D934 /* IDifferentialEquation.swift */; };
 		E572E02627156F040090D934 /* EulerMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E02527156F040090D934 /* EulerMethod.swift */; };
+		E572E0282715739C0090D934 /* TestDiffEq.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E0272715739C0090D934 /* TestDiffEq.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7684ACB6C39E378C4E1FF271 /* Pods-ComputationalPracticum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComputationalPracticum.debug.xcconfig"; path = "Target Support Files/Pods-ComputationalPracticum/Pods-ComputationalPracticum.debug.xcconfig"; sourceTree = "<group>"; };
 		7CDA9443B3B43C29250C60CF /* Pods-ComputationalPracticum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComputationalPracticum.release.xcconfig"; path = "Target Support Files/Pods-ComputationalPracticum/Pods-ComputationalPracticum.release.xcconfig"; sourceTree = "<group>"; };
 		CC5555D5197193D75C5729F3 /* libPods-ComputationalPracticum.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ComputationalPracticum.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E528B90C271605F500229635 /* ImprovedEulerMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImprovedEulerMethod.swift; sourceTree = "<group>"; };
+		E528B91127162D2400229635 /* PlotterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotterModel.swift; sourceTree = "<group>"; };
+		E528B91327162EDC00229635 /* RungeKuttaMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RungeKuttaMethod.swift; sourceTree = "<group>"; };
 		E53D9AD92714C18100729B9E /* ComputationalPracticum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComputationalPracticum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E53D9ADC2714C18100729B9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E53D9ADE2714C18100729B9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -30,10 +36,10 @@
 		E53D9AE32714C18300729B9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E53D9AE52714C18300729B9E /* ComputationalPracticum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ComputationalPracticum.entitlements; sourceTree = "<group>"; };
 		E572E01C2714E4710090D934 /* INumericalMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INumericalMethod.swift; sourceTree = "<group>"; };
-		E572E01F2714E4AD0090D934 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		E572E0212714E6450090D934 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		E572E0232714E9380090D934 /* IDifferentialEquation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDifferentialEquation.swift; sourceTree = "<group>"; };
 		E572E02527156F040090D934 /* EulerMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulerMethod.swift; sourceTree = "<group>"; };
+		E572E0272715739C0090D934 /* TestDiffEq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiffEq.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,26 @@
 				CC5555D5197193D75C5729F3 /* libPods-ComputationalPracticum.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E528B90B2716050A00229635 /* Numerical Methods */ = {
+			isa = PBXGroup;
+			children = (
+				E572E01C2714E4710090D934 /* INumericalMethod.swift */,
+				E572E02527156F040090D934 /* EulerMethod.swift */,
+				E528B90C271605F500229635 /* ImprovedEulerMethod.swift */,
+				E528B91327162EDC00229635 /* RungeKuttaMethod.swift */,
+			);
+			path = "Numerical Methods";
+			sourceTree = "<group>";
+		};
+		E528B90E2716078B00229635 /* Differential Equations */ = {
+			isa = PBXGroup;
+			children = (
+				E572E0232714E9380090D934 /* IDifferentialEquation.swift */,
+				E572E0272715739C0090D934 /* TestDiffEq.swift */,
+			);
+			path = "Differential Equations";
 			sourceTree = "<group>";
 		};
 		E53D9AD02714C18100729B9E = {
@@ -123,11 +149,10 @@
 		E572E01E2714E4790090D934 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E528B91127162D2400229635 /* PlotterModel.swift */,
+				E528B90E2716078B00229635 /* Differential Equations */,
+				E528B90B2716050A00229635 /* Numerical Methods */,
 				E572E0212714E6450090D934 /* Grid.swift */,
-				E572E01C2714E4710090D934 /* INumericalMethod.swift */,
-				E572E0232714E9380090D934 /* IDifferentialEquation.swift */,
-				E572E01F2714E4AD0090D934 /* Point.swift */,
-				E572E02527156F040090D934 /* EulerMethod.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,11 +253,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E572E0202714E4AD0090D934 /* Point.swift in Sources */,
+				E528B90D271605F500229635 /* ImprovedEulerMethod.swift in Sources */,
 				E53D9ADF2714C18100729B9E /* ViewController.swift in Sources */,
+				E572E0282715739C0090D934 /* TestDiffEq.swift in Sources */,
 				E53D9ADD2714C18100729B9E /* AppDelegate.swift in Sources */,
 				E572E0222714E6450090D934 /* Grid.swift in Sources */,
 				E572E02627156F040090D934 /* EulerMethod.swift in Sources */,
+				E528B91427162EDC00229635 /* RungeKuttaMethod.swift in Sources */,
+				E528B91227162D2400229635 /* PlotterModel.swift in Sources */,
 				E572E0242714E9380090D934 /* IDifferentialEquation.swift in Sources */,
 				E572E01D2714E4710090D934 /* INumericalMethod.swift in Sources */,
 			);

@@ -6,9 +6,10 @@
 //
 
 import Foundation
+import Charts
 
 class Grid {
-    var points: [Point]
+    var points: [CGPoint]
     var numberOfPoints: Int
     var xBound: Double
     
@@ -19,7 +20,7 @@ class Grid {
     }
     
     init(numberOfPoints: Int, xBound: Double) {
-        points = [Point](repeating: Point(), count: numberOfPoints)
+        points = [CGPoint](repeating: CGPoint(x: 0.0, y: 0.0), count: numberOfPoints)
         self.numberOfPoints = numberOfPoints
         self.xBound = xBound
     }    

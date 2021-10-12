@@ -22,12 +22,11 @@ class ViewController: NSViewController {
     @IBOutlet weak var improvedEulerCheckBox: NSButton!
     @IBOutlet weak var rungeKuttaCheckBox: NSButton!
     @IBOutlet weak var plotButton: NSButton!
-    
-    
+        
     override open func viewDidLoad() {
         super.viewDidLoad()
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
-        
+                
         animateNoDataText()
     }
     
@@ -36,28 +35,47 @@ class ViewController: NSViewController {
     }
     
     @IBAction func plotTypeChanged(_ sender: NSButton) {
-        print("Changed")
+//        print(sender.is)
     }
     
     @IBAction func plotTapped(_ sender: NSButton) {
-        let equotion = TestDiffEq(x_0: 0, y_0: 1)
-        let plotter = PlotterModel(equation: equotion, N: 101, X: 10)
-                
+        let x_0: Double = xZeroTextField.doubleValue
+        let y_0: Double = yZeroTextField.doubleValue
+        let N: Int = NTextField.integerValue
+        let X: Double = XTextField.doubleValue
         
-        let ds1 = LineChartDataSet(entries: plotter.getPointsEuler(), label: "Euler")
-        ds1.drawCirclesEnabled = false
-        ds1.colors = [NSUIColor.red]
-
-        let ds2 = LineChartDataSet(entries: plotter.getPointsImprovedEuler(), label: "Improved Euler")
-        ds2.drawCirclesEnabled = false
-        ds2.colors = [NSUIColor.blue]
+        // handle errors!!
         
+        let equation = TestDiffEq(x_0: x_0, y_0: y_0)
+        let plotter = PlotterModel(equation: equation, N: N, X: X)
         
         let data = LineChartData()
-        data.addDataSet(ds1)
-        data.addDataSet(ds2)
-        // Вынести вычисления 
-                
+        
+        if eulerCheckBox.state == .on {
+            let ds = LineChartDataSet(entries: plotter.getPointsEuler(), label: "Euler")
+            ds.drawCirclesEnabled = false
+            ds.colors = [NSUIColor.red]
+            
+            data.addDataSet(ds)
+        }
+        
+        if improvedEulerCheckBox.state == .on {
+            let ds = LineChartDataSet(entries: plotter.getPointsImprovedEuler(), label: "Improved Euler")
+            ds.drawCirclesEnabled = false
+            ds.colors = [NSUIColor.green]
+            
+            data.addDataSet(ds)
+        }
+        
+        if rungeKuttaCheckBox.state == .on {
+            let ds = LineChartDataSet(entries: plotter.getPointsRungeKutta(), label: "Runge-Kutta")
+            ds.drawCirclesEnabled = false
+            ds.colors = [NSUIColor.blue]
+            
+            data.addDataSet(ds)
+        }
+    
+                        
         self.lineChartView.data = data
         self.lineChartView.gridBackgroundColor = NSUIColor.white
         self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)

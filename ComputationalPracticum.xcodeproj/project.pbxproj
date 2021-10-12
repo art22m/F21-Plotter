@@ -150,9 +150,9 @@
 			isa = PBXGroup;
 			children = (
 				E528B91127162D2400229635 /* PlotterModel.swift */,
+				E572E0212714E6450090D934 /* Grid.swift */,
 				E528B90E2716078B00229635 /* Differential Equations */,
 				E528B90B2716050A00229635 /* Numerical Methods */,
-				E572E0212714E6450090D934 /* Grid.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

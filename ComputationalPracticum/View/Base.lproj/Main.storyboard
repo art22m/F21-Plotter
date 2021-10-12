@@ -685,8 +685,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" title="Plotter" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -702,10 +702,10 @@
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
-        <!--Artem-->
+        <!--ar.murashko-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController title="Artem" id="XfG-lQ-9wD" customClass="ViewController" customModule="ComputationalPracticum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="ar.murashko" id="XfG-lQ-9wD" customClass="ViewController" customModule="ComputationalPracticum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="aqua" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -837,6 +837,9 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="plotTypeChanged:" target="XfG-lQ-9wD" id="hil-cP-Ggk"/>
+                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vyR-fI-JF8">
                                                     <rect key="frame" x="8" y="138" width="217" height="30"/>
@@ -847,6 +850,9 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="plotTypeChanged:" target="XfG-lQ-9wD" id="mPA-IC-BV2"/>
+                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YDb-Tu-RCS">
                                                     <rect key="frame" x="8" y="68" width="217" height="30"/>
@@ -857,6 +863,9 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="plotTypeChanged:" target="XfG-lQ-9wD" id="jft-eK-nQZ"/>
+                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTC-Oa-VDh">
                                                     <rect key="frame" x="8" y="103" width="217" height="30"/>
@@ -867,9 +876,12 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="plotTypeChanged:" target="XfG-lQ-9wD" id="7K4-OX-lR4"/>
+                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5fX-Fy-h53">
-                                                    <rect key="frame" x="13" y="9" width="207" height="37"/>
+                                                    <rect key="frame" x="3" y="9" width="227" height="37"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="Wuf-7H-fld"/>
                                                     </constraints>
@@ -877,6 +889,9 @@
                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
+                                                    <connections>
+                                                        <action selector="plotTapped:" target="XfG-lQ-9wD" id="hCm-14-ElZ"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -910,7 +925,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="NwT-ty-2R1" secondAttribute="trailing" constant="10" id="g7U-mO-vsW"/>
                                                 <constraint firstAttribute="trailing" secondItem="KGu-8w-3IQ" secondAttribute="trailing" constant="10" id="kBU-OE-EEO"/>
                                                 <constraint firstItem="NwT-ty-2R1" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="kNs-AX-yZz"/>
-                                                <constraint firstAttribute="trailing" secondItem="5fX-Fy-h53" secondAttribute="trailing" constant="20" id="lIa-pP-8Q2"/>
+                                                <constraint firstAttribute="trailing" secondItem="5fX-Fy-h53" secondAttribute="trailing" constant="10" id="lIa-pP-8Q2"/>
                                                 <constraint firstItem="uTC-Oa-VDh" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="lSU-eN-QBO"/>
                                                 <constraint firstItem="5fX-Fy-h53" firstAttribute="top" secondItem="YDb-Tu-RCS" secondAttribute="bottom" constant="30" id="lga-uG-vVQ"/>
                                                 <constraint firstItem="uTC-Oa-VDh" firstAttribute="top" secondItem="vyR-fI-JF8" secondAttribute="bottom" constant="10" id="lo0-go-fhF"/>
@@ -923,7 +938,7 @@
                                                 <constraint firstItem="fp8-OH-49b" firstAttribute="top" secondItem="o9P-f2-liG" secondAttribute="top" constant="20" id="wsd-1i-f2v"/>
                                                 <constraint firstItem="KGu-8w-3IQ" firstAttribute="top" secondItem="7Uo-0a-Q6t" secondAttribute="bottom" constant="20" id="xv8-Tt-45U"/>
                                                 <constraint firstItem="pYA-tA-6qR" firstAttribute="top" secondItem="fp8-OH-49b" secondAttribute="bottom" constant="10" id="yav-ME-bD7"/>
-                                                <constraint firstItem="5fX-Fy-h53" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="20" id="zH9-oY-Qhf"/>
+                                                <constraint firstItem="5fX-Fy-h53" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="zH9-oY-Qhf"/>
                                                 <constraint firstAttribute="trailing" secondItem="IMz-p9-S9T" secondAttribute="trailing" constant="10" id="zvz-jb-EhV"/>
                                             </constraints>
                                         </view>
@@ -949,12 +964,21 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="NTextField" destination="Q6M-nR-C7k" id="5YU-gw-Nru"/>
+                        <outlet property="XTextField" destination="7Uo-0a-Q6t" id="2hO-34-cDc"/>
+                        <outlet property="analyticalCheckBox" destination="YIS-c1-4kG" id="bpZ-h4-08G"/>
+                        <outlet property="eulerCheckBox" destination="vyR-fI-JF8" id="VBz-ES-IWR"/>
+                        <outlet property="improvedEulerCheckBox" destination="uTC-Oa-VDh" id="6D5-gz-Lrl"/>
                         <outlet property="lineChartView" destination="4Cs-q3-sca" id="43h-Tr-VTA"/>
+                        <outlet property="plotButton" destination="5fX-Fy-h53" id="kWS-ks-ao6"/>
+                        <outlet property="rungeKuttaCheckBox" destination="YDb-Tu-RCS" id="kah-Dy-8Io"/>
+                        <outlet property="xZeroTextField" destination="IMz-p9-S9T" id="Io1-Iq-UCn"/>
+                        <outlet property="yZeroTextField" destination="G5C-DZ-CnV" id="W1p-tZ-3US"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="206" y="794"/>
+            <point key="canvasLocation" x="192" y="1017"/>
         </scene>
     </scenes>
 </document>

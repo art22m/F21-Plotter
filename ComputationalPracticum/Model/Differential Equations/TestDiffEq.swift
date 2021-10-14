@@ -21,4 +21,8 @@ class TestDiffEq: IDifferentialEquation {
         
         return value
     }
+    
+    func getPointsOfDiscontinuity() -> [Double] {
+        return []
+    }
 }

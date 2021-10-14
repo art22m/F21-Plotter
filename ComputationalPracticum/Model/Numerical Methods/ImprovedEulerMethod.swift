@@ -17,12 +17,12 @@ class ImprovedEulerMethod: INumericalMethod {
     }
     
     func compute() -> [CGPoint] {
-        let h = (grid.xBound - equation.x_0) / (Double(grid.numberOfPoints))
+        let h = (grid.xBound - equation.x_0) / (Double(grid.numberOfPoints) - 1)
         
         grid.points[0].x = equation.x_0
         grid.points[grid.numberOfPoints - 1].x = Double(grid.xBound)
         for i in 1 ..< grid.numberOfPoints - 1 {
-            grid.points[i].x = grid.points[i - 1].x + (grid.xBound / Double(grid.numberOfPoints))
+            grid.points[i].x = grid.points[i - 1].x + h
         }
         
         grid.points[0].y = equation.y_0

@@ -23,11 +23,23 @@ class ViewController: NSViewController {
     @IBOutlet weak var rungeKuttaCheckBox: NSButton!
     @IBOutlet weak var plotButton: NSButton!
         
+    let alert: NSAlert = NSAlert()
+    let plotter: PlotterModel = PlotterModel(equation: TestDiffEq(x_0: 1, y_0: 2), N: 100, X: 10)
+    
     override open func viewDidLoad() {
         super.viewDidLoad()
+        // Program Window
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
-                
+        
+        // ChartView
+        self.lineChartView.gridBackgroundColor = NSUIColor.white
+        self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
         animateNoDataText()
+        
+        // Error alert
+        alert.alertStyle = NSAlert.Style.warning
+        alert.messageText = "Input data error"
+        alert.addButton(withTitle: "Okay")
     }
     
     override open func viewWillAppear() {
@@ -35,20 +47,42 @@ class ViewController: NSViewController {
     }
     
     @IBAction func plotTypeChanged(_ sender: NSButton) {
-//        print(sender.is)
+    
     }
     
     @IBAction func plotTapped(_ sender: NSButton) {
-        let x_0: Double = xZeroTextField.doubleValue
-        let y_0: Double = yZeroTextField.doubleValue
-        let N: Int = NTextField.integerValue
-        let X: Double = XTextField.doubleValue
+        // Get entered data from text fields
+        let x_0: String = xZeroTextField.stringValue
+        let y_0: String = yZeroTextField.stringValue
+        let N: String   = NTextField.stringValue
+        let X: String   = XTextField.stringValue
         
-        // handle errors!!
-        
-        let equation = TestDiffEq(x_0: x_0, y_0: y_0)
-        let plotter = PlotterModel(equation: equation, N: N, X: X)
-        
+        // If there are no errors, set new parameters from textFields to
+        // the plotter model and plot the graphs.
+        do {
+            try plotter.setNewParameters(x_0: x_0, y_0: y_0, N: N, X: X)
+            drawLineChart()
+        } catch InputDataError.invalid_interval {
+            alert.informativeText = InputDataError.invalid_interval.description
+            alert.runModal()
+        } catch InputDataError.points_of_discontinuity {
+            alert.informativeText = InputDataError.points_of_discontinuity.description
+            alert.runModal()
+        } catch InputDataError.miss_data {
+            alert.informativeText = InputDataError.miss_data.description
+            alert.runModal()
+        } catch InputDataError.invalid_N {
+            alert.informativeText = InputDataError.invalid_N.description
+            alert.runModal()
+        } catch InputDataError.out_of_boudns {
+            alert.informativeText = InputDataError.out_of_boudns.description
+        } catch {
+            alert.informativeText = "Something strange occur"
+            alert.runModal()
+        }
+    }
+    
+    func drawLineChart() {
         let data = LineChartData()
         
         if eulerCheckBox.state == .on {
@@ -74,11 +108,14 @@ class ViewController: NSViewController {
             
             data.addDataSet(ds)
         }
-    
-                        
-        self.lineChartView.data = data
-        self.lineChartView.gridBackgroundColor = NSUIColor.white
-        self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
+        
+        if analyticalCheckBox.state == .on {
+            
+        }
+        
+        lineChartView.data = data
+        // Say to Chart View that we set new data
+        lineChartView.notifyDataSetChanged()
     }
 }
 

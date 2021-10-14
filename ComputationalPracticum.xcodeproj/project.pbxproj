@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E4A1B154F66335A5805AE5A6 /* libPods-ComputationalPracticum.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CC5555D5197193D75C5729F3 /* libPods-ComputationalPracticum.a */; };
+		E500941A2718427300D214D2 /* InputDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50094192718427300D214D2 /* InputDataError.swift */; };
 		E528B90D271605F500229635 /* ImprovedEulerMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528B90C271605F500229635 /* ImprovedEulerMethod.swift */; };
 		E528B91227162D2400229635 /* PlotterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528B91127162D2400229635 /* PlotterModel.swift */; };
 		E528B91427162EDC00229635 /* RungeKuttaMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E528B91327162EDC00229635 /* RungeKuttaMethod.swift */; };
@@ -26,6 +27,7 @@
 		7684ACB6C39E378C4E1FF271 /* Pods-ComputationalPracticum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComputationalPracticum.debug.xcconfig"; path = "Target Support Files/Pods-ComputationalPracticum/Pods-ComputationalPracticum.debug.xcconfig"; sourceTree = "<group>"; };
 		7CDA9443B3B43C29250C60CF /* Pods-ComputationalPracticum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComputationalPracticum.release.xcconfig"; path = "Target Support Files/Pods-ComputationalPracticum/Pods-ComputationalPracticum.release.xcconfig"; sourceTree = "<group>"; };
 		CC5555D5197193D75C5729F3 /* libPods-ComputationalPracticum.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ComputationalPracticum.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E50094192718427300D214D2 /* InputDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputDataError.swift; sourceTree = "<group>"; };
 		E528B90C271605F500229635 /* ImprovedEulerMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImprovedEulerMethod.swift; sourceTree = "<group>"; };
 		E528B91127162D2400229635 /* PlotterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlotterModel.swift; sourceTree = "<group>"; };
 		E528B91327162EDC00229635 /* RungeKuttaMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RungeKuttaMethod.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				E528B91127162D2400229635 /* PlotterModel.swift */,
 				E572E0212714E6450090D934 /* Grid.swift */,
+				E50094192718427300D214D2 /* InputDataError.swift */,
 				E528B90E2716078B00229635 /* Differential Equations */,
 				E528B90B2716050A00229635 /* Numerical Methods */,
 			);
@@ -260,6 +263,7 @@
 				E572E0222714E6450090D934 /* Grid.swift in Sources */,
 				E572E02627156F040090D934 /* EulerMethod.swift in Sources */,
 				E528B91427162EDC00229635 /* RungeKuttaMethod.swift in Sources */,
+				E500941A2718427300D214D2 /* InputDataError.swift in Sources */,
 				E528B91227162D2400229635 /* PlotterModel.swift in Sources */,
 				E572E0242714E9380090D934 /* IDifferentialEquation.swift in Sources */,
 				E572E01D2714E4710090D934 /* INumericalMethod.swift in Sources */,

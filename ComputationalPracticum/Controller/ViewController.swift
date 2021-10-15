@@ -32,8 +32,8 @@ class ViewController: NSViewController {
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
         
         // ChartView
-        self.lineChartView.gridBackgroundColor = NSUIColor.white
-        self.lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
+        lineChartView.gridBackgroundColor = NSUIColor.white
+        lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
         animateNoDataText()
         
         // Error alert

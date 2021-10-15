@@ -16,8 +16,11 @@ class TestDiffEq: IDifferentialEquation {
         self.y_0 = y_0
     }
     
+    // y' = f(x,y) = 2x
+    // y(x_0) = y_0
+    // y = x^2
     func getDerivativeValue(x: Double, y: Double) -> Double {
-        let value = -y + sin(x)
+        let value = 2*x
         
         return value
     }

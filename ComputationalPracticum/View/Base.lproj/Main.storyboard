@@ -837,9 +837,6 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
-                                                    <connections>
-                                                        <action selector="plotTypeChanged:" target="XfG-lQ-9wD" id="hil-cP-Ggk"/>
-                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vyR-fI-JF8">
                                                     <rect key="frame" x="8" y="138" width="217" height="30"/>
@@ -850,9 +847,6 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
-                                                    <connections>
-                                                        <action selector="plotTypeChanged:" target="XfG-lQ-9wD" id="mPA-IC-BV2"/>
-                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YDb-Tu-RCS">
                                                     <rect key="frame" x="8" y="68" width="217" height="30"/>
@@ -863,9 +857,6 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
-                                                    <connections>
-                                                        <action selector="plotTypeChanged:" target="XfG-lQ-9wD" id="jft-eK-nQZ"/>
-                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uTC-Oa-VDh">
                                                     <rect key="frame" x="8" y="103" width="217" height="30"/>
@@ -876,9 +867,6 @@
                                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
-                                                    <connections>
-                                                        <action selector="plotTypeChanged:" target="XfG-lQ-9wD" id="7K4-OX-lR4"/>
-                                                    </connections>
                                                 </button>
                                                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5fX-Fy-h53">
                                                     <rect key="frame" x="3" y="9" width="227" height="37"/>

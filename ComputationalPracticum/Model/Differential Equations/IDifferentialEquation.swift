@@ -11,6 +11,7 @@ protocol IDifferentialEquation {
     var x_0: Double { get set }
     var y_0: Double { get set }
     
+    func getFunctionValue(x: Double) -> Double
     func getDerivativeValue(x: Double, y: Double) -> Double
     func getPointsOfDiscontinuity() -> [Double]
 }

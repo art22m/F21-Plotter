@@ -10,18 +10,18 @@ import Charts
 
 class Grid {
     var points: [CGPoint]
-    var numberOfPoints: Int
-    var xBound: Double
+    var N: Int // Number of points
+    var X: Double // X bound
     
     init() {
         points = []
-        numberOfPoints = 0
-        xBound = 0.0
+        N = 0
+        X = 0.0
     }
     
-    init(numberOfPoints: Int, xBound: Double) {
-        points = [CGPoint](repeating: CGPoint(x: 0.0, y: 0.0), count: numberOfPoints)
-        self.numberOfPoints = numberOfPoints
-        self.xBound = xBound
+    init(N: Int, X: Double) {
+        points = []
+        self.N = N
+        self.X = X
     }    
 }

@@ -18,9 +18,17 @@ class TestDiffEq: IDifferentialEquation {
     
     // y' = f(x,y) = 2x
     // y(x_0) = y_0
-    // y = x^2
+    // y = x^2 + C => C = y - x^2
     func getDerivativeValue(x: Double, y: Double) -> Double {
-        let value = 2*x
+        let value = 5 - x * x - y * y + 2 *  x * y
+        
+        return value
+    }
+    
+    func getFunctionValue(x: Double) -> Double {
+        let C  = -0.75
+        let e = 2.718
+        let value = 1 / ( C * pow(e, 4 * x) - 0.25) + x + 2
         
         return value
     }

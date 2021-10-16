@@ -12,7 +12,10 @@ import Charts
 class ViewController: NSViewController {
     // MARK: - IBOutlet
     
-    @IBOutlet var lineChartView: LineChartView!
+    @IBOutlet weak var scrollView: NSScrollView!
+    @IBOutlet var errorsLineChartView: LineChartView!
+    @IBOutlet var backgroundView: NSView!
+    @IBOutlet var graphsLineChartView: LineChartView!
     @IBOutlet weak var xZeroTextField: NSTextField!
     @IBOutlet weak var yZeroTextField: NSTextField!
     @IBOutlet weak var XTextField: NSTextField!
@@ -31,16 +34,32 @@ class ViewController: NSViewController {
         // Program Window
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
         
-        // ChartView
-        lineChartView.chartDescription?.text = "Graphs"
-        lineChartView.gridBackgroundColor = NSUIColor.white
-        lineChartView.drawBordersEnabled = true
-        lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.rightAxis.drawAxisLineEnabled = false
-        lineChartView.rightAxis.drawLabelsEnabled = false
+        // Background View
+        backgroundView.wantsLayer = true
+        backgroundView.layer?.borderWidth = 1
+        backgroundView.layer?.borderColor = NSColor.lightGray.cgColor
+        
+        backgroundView.layer?.backgroundColor = NSColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).cgColor
+        scrollView.backgroundColor = NSColor(red: 234.0/255.0, green: 234.0/255.0, blue: 234.0/255.0, alpha: 1.0)
+        
+        // Errors ChartView
+        errorsLineChartView.gridBackgroundColor = NSUIColor.white
+        errorsLineChartView.drawBordersEnabled = true
+        errorsLineChartView.xAxis.labelPosition = .bottom
+        errorsLineChartView.rightAxis.drawAxisLineEnabled = false
+        errorsLineChartView.rightAxis.drawLabelsEnabled = false
+        errorsLineChartView.noDataText = ""
+
+
+        // Graph ChartView
+        graphsLineChartView.gridBackgroundColor = NSUIColor.white
+        graphsLineChartView.drawBordersEnabled = true
+        graphsLineChartView.xAxis.labelPosition = .bottom
+        graphsLineChartView.rightAxis.drawAxisLineEnabled = false
+        graphsLineChartView.rightAxis.drawLabelsEnabled = false
 
         
-        lineChartView.animate(xAxisDuration: 0.0, yAxisDuration: 1.0)
+        graphsLineChartView.animate(xAxisDuration: 2.0)
         animateNoDataText()
         
         // Error alert
@@ -75,6 +94,7 @@ class ViewController: NSViewController {
             alert.runModal()
         } catch InputDataError.out_of_boudns {
             alert.informativeText = InputDataError.out_of_boudns.description
+            alert.runModal()
         } catch {
             alert.informativeText = "Something strange occur"
             alert.runModal()
@@ -82,36 +102,55 @@ class ViewController: NSViewController {
     }
     
     func drawLineChart() {
-        let data = LineChartData()
+        let pointsData = LineChartData()
+        let errorsData = LineChartData()
         
         if eulerCheckBox.state == .on {
-            let ds = LineChartDataSet(entries: plotter.getPointsEuler(), label: "Euler")
-            ds.drawCirclesEnabled = false
-            ds.drawValuesEnabled = false
-            ds.lineWidth = 2
-            ds.colors = [NSUIColor.red]
+            let dsPoints = LineChartDataSet(entries: plotter.getPointsEuler(), label: "Euler")
+            dsPoints.drawCirclesEnabled = false
+            dsPoints.drawValuesEnabled = false
+            dsPoints.lineWidth = 2
+            dsPoints.colors = [NSUIColor.red]
+            pointsData.addDataSet(dsPoints)
             
-            data.addDataSet(ds)
+            let dsErrors = LineChartDataSet(entries: plotter.getErrorsEuler(), label: "Euler")
+            dsErrors.drawCirclesEnabled = false
+            dsErrors.drawValuesEnabled = false
+            dsErrors.lineWidth = 2
+            dsErrors.colors = [NSUIColor.red]
+            errorsData.addDataSet(dsErrors)
         }
         
         if improvedEulerCheckBox.state == .on {
-            let ds = LineChartDataSet(entries: plotter.getPointsImprovedEuler(), label: "Improved Euler")
-            ds.drawCirclesEnabled = false
-            ds.drawValuesEnabled = false
-            ds.lineWidth = 2
-            ds.colors = [NSUIColor.green]
+            let dsPoints = LineChartDataSet(entries: plotter.getPointsImprovedEuler(), label: "Improved Euler")
+            dsPoints.drawCirclesEnabled = false
+            dsPoints.drawValuesEnabled = false
+            dsPoints.lineWidth = 2
+            dsPoints.colors = [NSUIColor.blue]
+            pointsData.addDataSet(dsPoints)
             
-            data.addDataSet(ds)
+            let dsErrors = LineChartDataSet(entries: plotter.getErrorsImproverEuler(), label: "Improved Euler")
+            dsErrors.drawCirclesEnabled = false
+            dsErrors.drawValuesEnabled = false
+            dsErrors.lineWidth = 2
+            dsErrors.colors = [NSUIColor.blue]
+            errorsData.addDataSet(dsErrors)
         }
         
         if rungeKuttaCheckBox.state == .on {
-            let ds = LineChartDataSet(entries: plotter.getPointsRungeKutta(), label: "Runge-Kutta")
-            ds.drawCirclesEnabled = false
-            ds.drawValuesEnabled = false
-            ds.lineWidth = 2
-            ds.colors = [NSUIColor.blue]
+            let dsPoints = LineChartDataSet(entries: plotter.getPointsRungeKutta(), label: "Runge-Kutta")
+            dsPoints.drawCirclesEnabled = false
+            dsPoints.drawValuesEnabled = false
+            dsPoints.lineWidth = 2
+            dsPoints.colors = [NSUIColor.green]
+            pointsData.addDataSet(dsPoints)
             
-            data.addDataSet(ds)
+            let dsErrors = LineChartDataSet(entries: plotter.getErrorsRungeKutta(), label: "Runge-Kutta")
+            dsErrors.drawCirclesEnabled = false
+            dsErrors.drawValuesEnabled = false
+            dsErrors.lineWidth = 2
+            dsErrors.colors = [NSUIColor.green]
+            errorsData.addDataSet(dsErrors)
         }
         
         if analyticalCheckBox.state == .on {
@@ -121,12 +160,14 @@ class ViewController: NSViewController {
             ds.lineWidth = 2
             ds.colors = [NSUIColor.black]
             
-            data.addDataSet(ds)
+            pointsData.addDataSet(ds)
         }
         
-        lineChartView.data = data
+        graphsLineChartView.data = pointsData
+        errorsLineChartView.data = errorsData
+        
         // Say to Chart View that we set new data
-        lineChartView.notifyDataSetChanged()
+        graphsLineChartView.notifyDataSetChanged()
     }
 }
 
@@ -138,13 +179,13 @@ extension ViewController {
         let timeInterval: Double = 1 / Double(noDataText.count)
         var charIndex = 0.0
         
-        lineChartView.noDataText = ""
-        lineChartView.notifyDataSetChanged()
+        graphsLineChartView.noDataText = ""
+        graphsLineChartView.notifyDataSetChanged()
         
         for letter in noDataText {
             Timer.scheduledTimer(withTimeInterval: timeInterval * charIndex, repeats: false) { (timer) in
-                self.lineChartView.noDataText.append(letter)
-                self.lineChartView.notifyDataSetChanged()
+                self.graphsLineChartView.noDataText.append(letter)
+                self.graphsLineChartView.notifyDataSetChanged()
             }
             charIndex += 1
         }

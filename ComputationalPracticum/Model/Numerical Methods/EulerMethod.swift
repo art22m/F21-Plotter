@@ -16,7 +16,6 @@ class EulerMethod: INumericalMethod {
         self.grid = Grid(N: N, X: X)
     }
     
-        
     func compute() -> [CGPoint] {
         let h = (grid.X - equation.x_0) / (Double(grid.N))
         
@@ -27,7 +26,6 @@ class EulerMethod: INumericalMethod {
             
             let x = x_prev + h
             let y = h * equation.getDerivativeValue(x: x_prev, y: y_prev) + y_prev
-            
             grid.points.append(CGPoint(x: x, y: y))
         }
         
@@ -36,8 +34,9 @@ class EulerMethod: INumericalMethod {
     
     func computeLTE() -> [CGPoint] {
         var errorPoints = [CGPoint]()
+        let graphPoints = compute()
         
-        for point in grid.points {
+        for point in graphPoints {
             let error = abs(equation.getFunctionValue(x: point.x) - point.y)
             errorPoints.append(CGPoint(x: point.x, y: error))
         }

@@ -40,8 +40,9 @@ class RungeKuttaMethod: INumericalMethod {
     
     func computeLTE() -> [CGPoint] {
         var errorPoints = [CGPoint]()
+        let graphPoints = compute()
         
-        for point in grid.points {
+        for point in graphPoints {
             let error = abs(equation.getFunctionValue(x: point.x) - point.y)
             errorPoints.append(CGPoint(x: point.x, y: error))
         }

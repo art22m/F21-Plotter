@@ -45,31 +45,59 @@ class PlotterModel {
     func getPointsEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return compute(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeGraphPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
     }
+    
+    func getErrorsEuler() -> [ChartDataEntry] {
+        guard let equation = equation, let grid = grid else { return [] }
+        
+        return computeErrorPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
+    }
+    
     
     func getPointsImprovedEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return compute(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeGraphPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
     }
+    
+    func getErrorsImproverEuler() -> [ChartDataEntry] {
+        guard let equation = equation, let grid = grid else { return [] }
+        
+        return computeErrorPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
+    }
+    
     
     func getPointsRungeKutta() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return compute(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeGraphPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
+    }
+    
+    func getErrorsRungeKutta() -> [ChartDataEntry] {
+        guard let equation = equation, let grid = grid else { return [] }
+        
+        return computeErrorPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
     /*
      Compute the points and cast them to ChartDataEntry,
      ChartDataEntry class used to plot the graphs.
      */
-    func compute(using method: INumericalMethod) -> [ChartDataEntry] {
+    func computeGraphPoints(using method: INumericalMethod) -> [ChartDataEntry] {
         let points = method.compute()
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
                    
         return result
     }
+    
+    func computeErrorPoints(using method: INumericalMethod) -> [ChartDataEntry] {
+        let points = method.computeLTE()
+        let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
+        
+        return result
+    }
+    
     
     /*
      Check for the input data erors and throw them if occurs,
@@ -85,11 +113,12 @@ class PlotterModel {
             throw InputDataError.miss_data
         }
         
-        guard abs(Double(x_0)!) <= 100000 &&
-              abs(Double(y_0)!) <= 100000 &&
-              abs(Int(N)!)      <= 100000 &&
-              abs(Double(X)!)   <= 100000
+        guard abs(Double(x_0)!) <= 10000 &&
+              abs(Double(y_0)!) <= 10000 &&
+              abs(Int(N)!)      <= 10000 &&
+              abs(Double(X)!)   <= 10000
         else {
+            print(123)
             throw InputDataError.out_of_boudns
         }
         

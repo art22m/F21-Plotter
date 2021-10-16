@@ -98,7 +98,7 @@
         <!--Graphs and Local Errors-->
         <scene sceneID="mQG-Dw-vBn">
             <objects>
-                <viewController title="Graphs and Local Errors" id="RIU-ed-1Jv" customClass="ViewController" customModule="ComputationalPracticum" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Graphs and Local Errors" storyboardIdentifier="graph" id="RIU-ed-1Jv" customClass="LocalErrorViewController" customModule="ComputationalPracticum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="aqua" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -338,7 +338,7 @@
                                 <rect key="frame" x="250" y="0.0" width="750" height="600"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="4Cs-q3-sca" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="50" y="315" width="650" height="250"/>
+                                        <rect key="frame" x="50" y="310" width="650" height="250"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="250" id="L8a-Ey-SWI"/>
                                             <constraint firstAttribute="width" constant="650" id="qQO-Eg-MJs"/>
@@ -352,9 +352,9 @@
                                         </constraints>
                                     </customView>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K4r-yu-eep">
-                                        <rect key="frame" x="334" y="570" width="83" height="25"/>
+                                        <rect key="frame" x="334" y="565" width="83" height="30"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="P81-GV-nZi"/>
+                                            <constraint firstAttribute="height" constant="30" id="P81-GV-nZi"/>
                                         </constraints>
                                         <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Graphs" id="zOs-et-B5B">
                                             <font key="font" metaFont="systemBold" size="22"/>
@@ -422,7 +422,7 @@
         <!--Global Errors-->
         <scene sceneID="zDE-jD-gAY">
             <objects>
-                <viewController title="Global Errors" id="9R5-VX-HJp" sceneMemberID="viewController">
+                <viewController title="Global Errors" storyboardIdentifier="error" id="9R5-VX-HJp" customClass="GlobalErrorViewController" customModule="ComputationalPracticum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="aqua" id="pc2-CO-7DX">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>

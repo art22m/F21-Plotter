@@ -9,7 +9,7 @@ import Cocoa
 import Foundation
 import Charts
 
-class ViewController: NSViewController {
+class LocalErrorViewController: NSViewController {
     // MARK: - IBOutlet
     
     @IBOutlet weak var scrollView: NSScrollView!
@@ -31,12 +31,13 @@ class ViewController: NSViewController {
     
     override open func viewDidLoad() {
         super.viewDidLoad()
+        
         // Program Window
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
         
         // Background View
         backgroundView.wantsLayer = true
-        backgroundView.layer?.borderWidth = 1
+        backgroundView.layer?.borderWidth = 2
         backgroundView.layer?.borderColor = NSColor.lightGray.cgColor
         
         backgroundView.layer?.backgroundColor = NSColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).cgColor
@@ -49,6 +50,8 @@ class ViewController: NSViewController {
         errorsLineChartView.rightAxis.drawAxisLineEnabled = false
         errorsLineChartView.rightAxis.drawLabelsEnabled = false
         errorsLineChartView.noDataText = ""
+        errorsLineChartView.borderLineWidth = 2
+        errorsLineChartView.borderColor = NSColor.lightGray
 
 
         // Graph ChartView
@@ -57,9 +60,9 @@ class ViewController: NSViewController {
         graphsLineChartView.xAxis.labelPosition = .bottom
         graphsLineChartView.rightAxis.drawAxisLineEnabled = false
         graphsLineChartView.rightAxis.drawLabelsEnabled = false
+        graphsLineChartView.borderLineWidth = 2
+        graphsLineChartView.borderColor = NSColor.lightGray
 
-        
-        graphsLineChartView.animate(xAxisDuration: 2.0)
         animateNoDataText()
         
         // Error alert
@@ -168,12 +171,16 @@ class ViewController: NSViewController {
         
         // Say to Chart View that we set new data
         graphsLineChartView.notifyDataSetChanged()
+        graphsLineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
+        
+        errorsLineChartView.notifyDataSetChanged()
+        errorsLineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
     }
 }
 
 // MARK: - Animations
 
-extension ViewController {
+extension LocalErrorViewController {
     func animateNoDataText() {
         let noDataText = "Please specify the parameters on the right side of the window."
         let timeInterval: Double = 1 / Double(noDataText.count)

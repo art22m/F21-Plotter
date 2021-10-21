@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="BT9-3G-HH1">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="gzR-XH-ie6">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19162"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Window Controller-->
+        <scene sceneID="06h-gj-miq">
+            <objects>
+                <windowController id="gzR-XH-ie6" sceneMemberID="viewController">
+                    <window key="window" title="Plotter | Murashko Artem" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="LuW-62-1it">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="196" y="249" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+                        <view key="contentView" id="CVP-sv-5oP">
+                            <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </view>
+                        <connections>
+                            <outlet property="delegate" destination="gzR-XH-ie6" id="hgp-y3-3Df"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="RIU-ed-1Jv" kind="relationship" relationship="window.shadowedContentViewController" id="MsO-eS-j2P"/>
+                    </connections>
+                </windowController>
+                <customObject id="lEM-ZU-PAm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-200" y="41"/>
+        </scene>
         <!--Application-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
@@ -66,40 +91,14 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5" y="124"/>
-        </scene>
-        <!--Plotter | Variant 1-->
-        <scene sceneID="GKK-dt-pgS">
-            <objects>
-                <tabViewController title="Plotter | Variant 1" selectedTabViewItemIndex="0" id="BT9-3G-HH1" customClass="CustomTabViewController" customModule="ComputationalPracticum" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabViewItems>
-                        <tabViewItem identifier="" id="f2E-Vi-NCQ"/>
-                        <tabViewItem identifier="" id="xcg-ip-UUQ"/>
-                    </tabViewItems>
-                    <tabView key="tabView" appearanceType="aqua" type="noTabsNoBorder" id="6FX-rx-GZf">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <font key="font" metaFont="message"/>
-                        <connections>
-                            <outlet property="delegate" destination="BT9-3G-HH1" id="kth-Ht-pGO"/>
-                        </connections>
-                    </tabView>
-                    <connections>
-                        <outlet property="tabView" destination="6FX-rx-GZf" id="Ddl-0R-Hgg"/>
-                        <segue destination="RIU-ed-1Jv" kind="relationship" relationship="tabItems" id="Fnc-99-IkE"/>
-                        <segue destination="9R5-VX-HJp" kind="relationship" relationship="tabItems" id="WBn-wR-L9h"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="7j9-OX-gMK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="109" y="363"/>
+            <point key="canvasLocation" x="184" y="-111"/>
         </scene>
         <!--Graphs and Local Errors-->
         <scene sceneID="mQG-Dw-vBn">
             <objects>
                 <viewController title="Graphs and Local Errors" storyboardIdentifier="graph" id="RIU-ed-1Jv" customClass="LocalErrorViewController" customModule="ComputationalPracticum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="aqua" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="940" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0s7-lD-H9s">
@@ -269,6 +268,20 @@
                                                         <action selector="plotTapped:" target="RIU-ed-1Jv" id="gnh-pb-utZ"/>
                                                     </connections>
                                                 </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KVS-VT-tLC">
+                                                    <rect key="frame" x="3" y="-1" width="227" height="37"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="24K-em-cli"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="fRK-qJ-5SW"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="push" title="Show Global Errors" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="rpI-xC-h8u">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="systemMedium" size="16"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="showGlobalTapped:" target="RIU-ed-1Jv" id="AZ0-53-pzJ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="YDb-Tu-RCS" firstAttribute="top" secondItem="uTC-Oa-VDh" secondAttribute="bottom" constant="10" id="0Ni-Wo-wjs"/>
@@ -295,7 +308,9 @@
                                                 <constraint firstItem="7Uo-0a-Q6t" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="YqN-cG-77g"/>
                                                 <constraint firstItem="Vob-wd-elY" firstAttribute="top" secondItem="Q6M-nR-C7k" secondAttribute="bottom" constant="30" id="ZZm-I4-XNj"/>
                                                 <constraint firstItem="Q6M-nR-C7k" firstAttribute="top" secondItem="KGu-8w-3IQ" secondAttribute="bottom" id="Zpw-be-zCE"/>
+                                                <constraint firstAttribute="trailing" secondItem="KVS-VT-tLC" secondAttribute="trailing" constant="10" id="a7E-eK-rUy"/>
                                                 <constraint firstItem="NwT-ty-2R1" firstAttribute="top" secondItem="IMz-p9-S9T" secondAttribute="bottom" constant="20" id="byt-U1-L43"/>
+                                                <constraint firstItem="KVS-VT-tLC" firstAttribute="top" secondItem="5fX-Fy-h53" secondAttribute="bottom" constant="5" id="cx9-hj-l1E"/>
                                                 <constraint firstItem="G5C-DZ-CnV" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="dvw-3j-1e8"/>
                                                 <constraint firstItem="bhC-7H-cRl" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="fzf-mA-tOZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="NwT-ty-2R1" secondAttribute="trailing" constant="10" id="g7U-mO-vsW"/>
@@ -306,6 +321,7 @@
                                                 <constraint firstItem="5fX-Fy-h53" firstAttribute="top" secondItem="YDb-Tu-RCS" secondAttribute="bottom" constant="30" id="lga-uG-vVQ"/>
                                                 <constraint firstItem="uTC-Oa-VDh" firstAttribute="top" secondItem="vyR-fI-JF8" secondAttribute="bottom" constant="10" id="lo0-go-fhF"/>
                                                 <constraint firstItem="YIS-c1-4kG" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="nPM-HF-6tZ"/>
+                                                <constraint firstItem="KVS-VT-tLC" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="p5C-Q8-zi2"/>
                                                 <constraint firstAttribute="trailing" secondItem="uTC-Oa-VDh" secondAttribute="trailing" constant="10" id="q2B-yB-jOd"/>
                                                 <constraint firstItem="7Uo-0a-Q6t" firstAttribute="top" secondItem="bhC-7H-cRl" secondAttribute="bottom" id="rOz-ka-KWf"/>
                                                 <constraint firstItem="KGu-8w-3IQ" firstAttribute="leading" secondItem="o9P-f2-liG" secondAttribute="leading" constant="10" id="rwH-Nf-SAq"/>
@@ -333,68 +349,61 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView appearanceType="aqua" translatesAutoresizingMaskIntoConstraints="NO" id="qyG-AY-gwo">
-                                <rect key="frame" x="250" y="0.0" width="750" height="600"/>
-                                <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="4Cs-q3-sca" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="50" y="310" width="650" height="250"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="250" id="L8a-Ey-SWI"/>
-                                            <constraint firstAttribute="width" constant="650" id="qQO-Eg-MJs"/>
-                                        </constraints>
-                                    </customView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="rgI-AW-XPW" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="50" y="15" width="650" height="250"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="650" id="DJB-c1-TKa"/>
-                                            <constraint firstAttribute="height" constant="250" id="uVY-eI-MlT"/>
-                                        </constraints>
-                                    </customView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K4r-yu-eep">
-                                        <rect key="frame" x="334" y="565" width="83" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="P81-GV-nZi"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Graphs" id="zOs-et-B5B">
-                                            <font key="font" metaFont="systemBold" size="22"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7VV-Se-Cy8">
-                                        <rect key="frame" x="310" y="270" width="130" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="KIP-Rc-KlZ"/>
-                                        </constraints>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Local Errors" id="Epd-jQ-tm1">
-                                            <font key="font" metaFont="systemBold" size="22"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                </subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K4r-yu-eep">
+                                <rect key="frame" x="258" y="565" width="674" height="30"/>
                                 <constraints>
-                                    <constraint firstItem="K4r-yu-eep" firstAttribute="top" secondItem="qyG-AY-gwo" secondAttribute="top" constant="5" id="1ef-fQ-Uoa"/>
-                                    <constraint firstAttribute="bottom" secondItem="rgI-AW-XPW" secondAttribute="bottom" constant="15" id="1g2-qa-7HU"/>
-                                    <constraint firstItem="rgI-AW-XPW" firstAttribute="centerX" secondItem="qyG-AY-gwo" secondAttribute="centerX" id="5Lj-UU-V0s"/>
-                                    <constraint firstItem="K4r-yu-eep" firstAttribute="centerX" secondItem="qyG-AY-gwo" secondAttribute="centerX" id="RKu-H2-9L4"/>
-                                    <constraint firstItem="4Cs-q3-sca" firstAttribute="centerX" secondItem="qyG-AY-gwo" secondAttribute="centerX" id="bbO-UE-zmP"/>
-                                    <constraint firstItem="rgI-AW-XPW" firstAttribute="top" secondItem="7VV-Se-Cy8" secondAttribute="bottom" constant="5" id="ckR-cH-2Rw"/>
-                                    <constraint firstItem="4Cs-q3-sca" firstAttribute="top" secondItem="K4r-yu-eep" secondAttribute="bottom" constant="5" id="fXg-OB-vQX"/>
-                                    <constraint firstItem="7VV-Se-Cy8" firstAttribute="centerX" secondItem="qyG-AY-gwo" secondAttribute="centerX" id="qHc-F2-LKJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="P81-GV-nZi"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Graphs" id="zOs-et-B5B">
+                                    <font key="font" metaFont="systemBold" size="22"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="4Cs-q3-sca" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="270" y="310" width="650" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="L8a-Ey-SWI"/>
+                                    <constraint firstAttribute="width" constant="650" id="qQO-Eg-MJs"/>
+                                </constraints>
+                            </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7VV-Se-Cy8">
+                                <rect key="frame" x="258" y="265" width="674" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="KIP-Rc-KlZ"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Local Errors" id="Epd-jQ-tm1">
+                                    <font key="font" metaFont="systemBold" size="22"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="rgI-AW-XPW" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="270" y="10" width="650" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="650" id="DJB-c1-TKa"/>
+                                    <constraint firstAttribute="height" constant="250" id="uVY-eI-MlT"/>
                                 </constraints>
                             </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="qyG-AY-gwo" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="5OB-BK-mwa"/>
                             <constraint firstAttribute="bottom" secondItem="0s7-lD-H9s" secondAttribute="bottom" id="716-aR-ipO"/>
+                            <constraint firstItem="4Cs-q3-sca" firstAttribute="leading" secondItem="0s7-lD-H9s" secondAttribute="trailing" constant="20" id="890-Vc-WTl"/>
                             <constraint firstItem="0s7-lD-H9s" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="9S2-ai-fGe"/>
-                            <constraint firstAttribute="trailing" secondItem="qyG-AY-gwo" secondAttribute="trailing" id="GjP-jA-XFd"/>
-                            <constraint firstAttribute="bottom" secondItem="qyG-AY-gwo" secondAttribute="bottom" id="Krg-nh-He9"/>
+                            <constraint firstItem="K4r-yu-eep" firstAttribute="leading" secondItem="0s7-lD-H9s" secondAttribute="trailing" constant="10" id="CWm-Ic-ysa"/>
+                            <constraint firstItem="7VV-Se-Cy8" firstAttribute="leading" secondItem="0s7-lD-H9s" secondAttribute="trailing" constant="10" id="Dly-Gi-guv"/>
+                            <constraint firstAttribute="trailing" secondItem="rgI-AW-XPW" secondAttribute="trailing" constant="20" id="ET8-tO-SaW"/>
+                            <constraint firstItem="rgI-AW-XPW" firstAttribute="leading" secondItem="0s7-lD-H9s" secondAttribute="trailing" constant="20" id="EVh-Kl-Zev"/>
+                            <constraint firstAttribute="trailing" secondItem="7VV-Se-Cy8" secondAttribute="trailing" constant="10" id="LA4-Wm-mTW"/>
+                            <constraint firstAttribute="trailing" secondItem="K4r-yu-eep" secondAttribute="trailing" constant="10" id="RHz-ob-l9l"/>
                             <constraint firstItem="0s7-lD-H9s" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="Y8D-01-COq"/>
+                            <constraint firstAttribute="trailing" secondItem="4Cs-q3-sca" secondAttribute="trailing" constant="20" id="big-Ga-vQ4"/>
+                            <constraint firstItem="rgI-AW-XPW" firstAttribute="top" secondItem="7VV-Se-Cy8" secondAttribute="bottom" constant="5" id="fHS-YO-NGV"/>
                             <constraint firstItem="0s7-lD-H9s" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fjN-5u-2Xf"/>
+                            <constraint firstItem="K4r-yu-eep" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="5" id="grv-Ol-d4W"/>
                             <constraint firstItem="0s7-lD-H9s" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="nri-yA-Ttz"/>
-                            <constraint firstItem="qyG-AY-gwo" firstAttribute="leading" secondItem="0s7-lD-H9s" secondAttribute="trailing" id="ow2-jP-gNB"/>
+                            <constraint firstItem="7VV-Se-Cy8" firstAttribute="top" secondItem="4Cs-q3-sca" secondAttribute="bottom" constant="15" id="sO3-Iu-aC5"/>
+                            <constraint firstItem="4Cs-q3-sca" firstAttribute="top" secondItem="K4r-yu-eep" secondAttribute="bottom" constant="5" id="v4X-Cp-sw1"/>
                             <constraint firstAttribute="bottom" secondItem="0s7-lD-H9s" secondAttribute="bottom" id="x4e-Qv-wdR"/>
                         </constraints>
                     </view>
@@ -402,7 +411,6 @@
                         <outlet property="NTextField" destination="Q6M-nR-C7k" id="86y-zU-6fT"/>
                         <outlet property="XTextField" destination="7Uo-0a-Q6t" id="Tth-Dt-tBQ"/>
                         <outlet property="analyticalCheckBox" destination="YIS-c1-4kG" id="xlB-av-QNo"/>
-                        <outlet property="backgroundView" destination="qyG-AY-gwo" id="mlv-AV-mr4"/>
                         <outlet property="errorsLineChartView" destination="rgI-AW-XPW" id="DBm-Wk-aJF"/>
                         <outlet property="eulerCheckBox" destination="vyR-fI-JF8" id="tbf-gd-XSJ"/>
                         <outlet property="graphsLineChartView" destination="4Cs-q3-sca" id="hWI-ZP-gYG"/>
@@ -410,20 +418,22 @@
                         <outlet property="plotButton" destination="5fX-Fy-h53" id="KSe-3B-KWJ"/>
                         <outlet property="rungeKuttaCheckBox" destination="YDb-Tu-RCS" id="W6n-Fs-GYX"/>
                         <outlet property="scrollView" destination="0s7-lD-H9s" id="N9k-XR-PZx"/>
+                        <outlet property="showErrorsButton" destination="KVS-VT-tLC" id="Nxp-OJ-JkA"/>
                         <outlet property="xZeroTextField" destination="IMz-p9-S9T" id="N5E-Ee-Zc2"/>
                         <outlet property="yZeroTextField" destination="G5C-DZ-CnV" id="gHb-IG-1co"/>
+                        <segue destination="9R5-VX-HJp" kind="sheet" identifier="showGlobal" id="nSd-kT-hcZ"/>
                     </connections>
                 </viewController>
                 <customObject id="JmM-tc-x8Y" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="803" y="1005"/>
+            <point key="canvasLocation" x="-200" y="669"/>
         </scene>
         <!--Global Errors-->
         <scene sceneID="zDE-jD-gAY">
             <objects>
                 <viewController title="Global Errors" storyboardIdentifier="error" id="9R5-VX-HJp" customClass="GlobalErrorViewController" customModule="ComputationalPracticum" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="aqua" id="pc2-CO-7DX">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="940" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7i-Ca-Rr3">
@@ -536,14 +546,29 @@
                                                         <font key="font" metaFont="systemMedium" size="16"/>
                                                     </buttonCell>
                                                     <connections>
-                                                        <action selector="plotTapped:" target="RIU-ed-1Jv" id="Nm4-g6-5X7"/>
+                                                        <action selector="plotTapped:" target="9R5-VX-HJp" id="CzA-HH-RRF"/>
+                                                    </connections>
+                                                </button>
+                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tJ5-VK-Hfb">
+                                                    <rect key="frame" x="3" y="169" width="227" height="37"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="Jsx-fq-0UZ"/>
+                                                    </constraints>
+                                                    <buttonCell key="cell" type="push" title="Back" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Gj4-6G-6YJ">
+                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                        <font key="font" metaFont="systemMedium" size="16"/>
+                                                    </buttonCell>
+                                                    <connections>
+                                                        <action selector="backTapped:" target="9R5-VX-HJp" id="ERc-vs-ZbN"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="tJ5-VK-Hfb" firstAttribute="top" secondItem="Bwk-UX-Ze6" secondAttribute="bottom" constant="10" id="0Z6-3t-xN2"/>
                                                 <constraint firstItem="Cu4-QN-0XS" firstAttribute="top" secondItem="iBc-i2-tpb" secondAttribute="bottom" constant="10" id="1Sr-yU-6Ms"/>
                                                 <constraint firstItem="w9Q-iq-Mis" firstAttribute="leading" secondItem="RTs-o7-BJC" secondAttribute="leading" constant="10" id="2UJ-P7-DGT"/>
                                                 <constraint firstItem="D84-Wz-slG" firstAttribute="top" secondItem="NHB-Pp-AgY" secondAttribute="bottom" constant="20" id="3DN-0z-3i5"/>
+                                                <constraint firstItem="tJ5-VK-Hfb" firstAttribute="leading" secondItem="RTs-o7-BJC" secondAttribute="leading" constant="10" id="3WU-ui-ELI"/>
                                                 <constraint firstItem="Sc9-gL-1wu" firstAttribute="top" secondItem="w9Q-iq-Mis" secondAttribute="bottom" constant="30" id="434-tL-dfx"/>
                                                 <constraint firstItem="Sc9-gL-1wu" firstAttribute="leading" secondItem="RTs-o7-BJC" secondAttribute="leading" constant="10" id="6dx-t7-5cD"/>
                                                 <constraint firstItem="iBc-i2-tpb" firstAttribute="top" secondItem="IZt-5H-SZd" secondAttribute="bottom" constant="10" id="C1B-ie-1EH"/>
@@ -553,6 +578,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="NHB-Pp-AgY" secondAttribute="trailing" constant="10" id="JFy-Z9-R2t"/>
                                                 <constraint firstAttribute="trailing" secondItem="Bwk-UX-Ze6" secondAttribute="trailing" constant="10" id="Krq-Az-2zZ"/>
                                                 <constraint firstItem="w9Q-iq-Mis" firstAttribute="top" secondItem="D84-Wz-slG" secondAttribute="bottom" id="Mk0-c6-aN8"/>
+                                                <constraint firstAttribute="trailing" secondItem="tJ5-VK-Hfb" secondAttribute="trailing" constant="10" id="N1j-Uj-oXc"/>
                                                 <constraint firstItem="NHB-Pp-AgY" firstAttribute="top" secondItem="OI2-z6-YRR" secondAttribute="bottom" id="NMg-Cb-mxC"/>
                                                 <constraint firstItem="Cu4-QN-0XS" firstAttribute="leading" secondItem="RTs-o7-BJC" secondAttribute="leading" constant="10" id="NlU-68-wPR"/>
                                                 <constraint firstAttribute="trailing" secondItem="eKc-LU-ZU3" secondAttribute="trailing" constant="10" id="SrH-eS-Ku4"/>
@@ -589,36 +615,42 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="dxp-w4-Pb3">
-                                <rect key="frame" x="250" y="0.0" width="750" height="600"/>
-                                <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="TrC-CR-HBy">
-                                        <rect key="frame" x="50" y="50" width="650" height="500"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="650" id="VVE-kr-9SZ"/>
-                                            <constraint firstAttribute="height" constant="500" id="lJl-0e-YZJ"/>
-                                        </constraints>
-                                    </customView>
-                                </subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="TrC-CR-HBy" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="270" y="60" width="650" height="500"/>
                                 <constraints>
-                                    <constraint firstItem="TrC-CR-HBy" firstAttribute="centerY" secondItem="dxp-w4-Pb3" secondAttribute="centerY" id="6bJ-NS-ygl"/>
-                                    <constraint firstItem="TrC-CR-HBy" firstAttribute="centerX" secondItem="dxp-w4-Pb3" secondAttribute="centerX" id="Scv-Qx-cLG"/>
+                                    <constraint firstAttribute="width" constant="650" id="VVE-kr-9SZ"/>
+                                    <constraint firstAttribute="height" constant="500" id="lJl-0e-YZJ"/>
                                 </constraints>
                             </customView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jYc-rn-IUJ">
+                                <rect key="frame" x="258" y="565" width="674" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="caV-ou-S67"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Global Errors" id="J7Y-5m-wOa">
+                                    <font key="font" metaFont="systemBold" size="22"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jYc-rn-IUJ" secondAttribute="trailing" constant="10" id="09c-rG-ymB"/>
+                            <constraint firstItem="jYc-rn-IUJ" firstAttribute="leading" secondItem="E7i-Ca-Rr3" secondAttribute="trailing" constant="10" id="1JF-g8-lJR"/>
                             <constraint firstItem="E7i-Ca-Rr3" firstAttribute="top" secondItem="pc2-CO-7DX" secondAttribute="top" id="3KV-xx-buX"/>
+                            <constraint firstItem="jYc-rn-IUJ" firstAttribute="top" secondItem="pc2-CO-7DX" secondAttribute="top" constant="5" id="8nw-b7-kHV"/>
                             <constraint firstItem="E7i-Ca-Rr3" firstAttribute="leading" secondItem="pc2-CO-7DX" secondAttribute="leading" id="K5D-yy-CtY"/>
-                            <constraint firstAttribute="bottom" secondItem="dxp-w4-Pb3" secondAttribute="bottom" id="MQE-Vv-uzR"/>
-                            <constraint firstAttribute="trailing" secondItem="dxp-w4-Pb3" secondAttribute="trailing" id="ZZs-MC-9hp"/>
-                            <constraint firstItem="dxp-w4-Pb3" firstAttribute="top" secondItem="pc2-CO-7DX" secondAttribute="top" id="dmZ-yc-OVc"/>
-                            <constraint firstItem="dxp-w4-Pb3" firstAttribute="leading" secondItem="E7i-Ca-Rr3" secondAttribute="trailing" id="gZU-IY-fQK"/>
+                            <constraint firstAttribute="trailing" secondItem="TrC-CR-HBy" secondAttribute="trailing" constant="20" id="ZzA-i3-X8i"/>
+                            <constraint firstItem="TrC-CR-HBy" firstAttribute="top" secondItem="jYc-rn-IUJ" secondAttribute="bottom" constant="5" id="eat-Qr-iEq"/>
                             <constraint firstAttribute="bottom" secondItem="E7i-Ca-Rr3" secondAttribute="bottom" id="hGb-a5-ZqG"/>
+                            <constraint firstItem="TrC-CR-HBy" firstAttribute="leading" secondItem="E7i-Ca-Rr3" secondAttribute="trailing" constant="20" id="n3e-iY-rSu"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backgroundView" destination="dxp-w4-Pb3" id="ITv-WT-6fH"/>
-                        <outlet property="errorsLineChartView" destination="TrC-CR-HBy" id="aNC-9C-yhM"/>
+                        <outlet property="NfTextField" destination="w9Q-iq-Mis" id="B96-jd-5wh"/>
+                        <outlet property="NiTextField" destination="NHB-Pp-AgY" id="UjI-Gd-AVc"/>
+                        <outlet property="backButton" destination="tJ5-VK-Hfb" id="XBN-gb-CcF"/>
+                        <outlet property="errorsLineChartView" destination="TrC-CR-HBy" id="fyo-09-IFz"/>
                         <outlet property="eulerCheckBox" destination="IZt-5H-SZd" id="Edm-4S-44H"/>
                         <outlet property="improvedEulerCheckBox" destination="iBc-i2-tpb" id="9uH-e1-i9a"/>
                         <outlet property="plotButton" destination="Bwk-UX-Ze6" id="Vwl-J7-glv"/>
@@ -628,7 +660,7 @@
                 </viewController>
                 <customObject id="n00-VA-wHJ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-574" y="1005"/>
+            <point key="canvasLocation" x="907" y="669"/>
         </scene>
     </scenes>
 </document>

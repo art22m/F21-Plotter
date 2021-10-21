@@ -48,11 +48,10 @@ class EulerMethod: INumericalMethod {
         var errorPoints = [CGPoint]()
         
         for i in N_i ... N_f {
-            let newMethod = ImprovedEulerMethod(solve: equation, N: i, X: grid.X)
+            let newMethod = EulerMethod(solve: equation, N: i, X: grid.X)
             let LTEpoints = newMethod.computeLTE()
 
             let mx = LTEpoints.max() { $0.y < $1.y}
-            
             errorPoints.append(CGPoint(x: CGFloat(i), y: mx?.y ?? 0.0))
         }
         

@@ -10,21 +10,25 @@ import Foundation
 import Charts
 
 class LocalErrorViewController: NSViewController {
+    
     // MARK: - IBOutlet
     
     @IBOutlet weak var scrollView: NSScrollView!
+    
     @IBOutlet var errorsLineChartView: LineChartView!
-    @IBOutlet var backgroundView: NSView!
     @IBOutlet var graphsLineChartView: LineChartView!
+    
     @IBOutlet weak var xZeroTextField: NSTextField!
     @IBOutlet weak var yZeroTextField: NSTextField!
     @IBOutlet weak var XTextField: NSTextField!
     @IBOutlet weak var NTextField: NSTextField!
+    
     @IBOutlet weak var analyticalCheckBox: NSButton!
     @IBOutlet weak var eulerCheckBox: NSButton!
     @IBOutlet weak var improvedEulerCheckBox: NSButton!
     @IBOutlet weak var rungeKuttaCheckBox: NSButton!
     @IBOutlet weak var plotButton: NSButton!
+    @IBOutlet weak var showErrorsButton: NSButton!
         
     let alert: NSAlert = NSAlert()
     let plotter: PlotterModel = PlotterModel(equation: DifferentialEquationVar1(x_0: 0, y_0: 0))
@@ -36,11 +40,6 @@ class LocalErrorViewController: NSViewController {
         self.preferredContentSize = NSMakeSize(self.view.frame.size.width, self.view.frame.size.height);
         
         // Background View
-        backgroundView.wantsLayer = true
-        backgroundView.layer?.borderWidth = 2
-        backgroundView.layer?.borderColor = NSColor.lightGray.cgColor
-        
-        backgroundView.layer?.backgroundColor = NSColor(red: 238.0/255.0, green: 238.0/255.0, blue: 238.0/255.0, alpha: 1.0).cgColor
         scrollView.backgroundColor = NSColor(red: 234.0/255.0, green: 234.0/255.0, blue: 234.0/255.0, alpha: 1.0)
         
         // Errors ChartView
@@ -71,8 +70,8 @@ class LocalErrorViewController: NSViewController {
         alert.addButton(withTitle: "Okay")
     }
     
-    // MARK: - IBAction
-        
+    // MARK: - @IBAction
+    
     @IBAction func plotTapped(_ sender: NSButton) {
         // Get entered data from text fields
         let x_0: String = xZeroTextField.stringValue
@@ -176,7 +175,7 @@ class LocalErrorViewController: NSViewController {
         // Say to Chart View that we set new data
         graphsLineChartView.notifyDataSetChanged()
         errorsLineChartView.notifyDataSetChanged()
-    }    
+    }
 }
 
 // MARK: - Animations
@@ -197,5 +196,24 @@ extension LocalErrorViewController {
             }
             charIndex += 1
         }
+    }
+}
+
+// MARK: - Segue
+
+extension LocalErrorViewController {
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if let secondVC = segue.destinationController as? GlobalErrorViewController {
+            secondVC.plotter = self.plotter
+        }
+    }
+    
+    @IBAction func showGlobalTapped(_ sender: NSButton) {
+        guard graphsLineChartView.data != nil else {
+            self.alert.informativeText = InputDataError.miss_data.description
+            self.alert.runModal()
+            return
+        }
+        performSegue(withIdentifier: "showGlobal", sender: self)
     }
 }

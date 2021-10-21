@@ -25,6 +25,12 @@ enum InputDataError: Error {
     
     // Throw when user enter very large/small numbers
     case out_of_boudns
+    
+    // Throw when user enter not natural border
+    case invalid_border
+    
+    // Throw whent user enter value of left border less than right
+    case invalid_borders_inverval
 }
 
 /*
@@ -38,11 +44,15 @@ extension InputDataError: CustomStringConvertible {
             case .invalid_interval:
                 return "x_0 should be less than X"
             case .miss_data:
-                return "Specify all the data correctly"
+                return "Specify all the data correctly and tap plot button"
             case .invalid_N:
                 return "N should be natural number >= 2"
             case .out_of_boudns:
                 return "Absolute value of parameters must not exceed 10,000"
+            case .invalid_borders_inverval:
+                return "Value of left border should be less than right"
+            case .invalid_border:
+                return "Value of border should be natural number >= 2"
             }
     }
 }

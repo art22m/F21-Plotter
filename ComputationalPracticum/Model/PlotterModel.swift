@@ -25,6 +25,10 @@ class PlotterModel {
         self.grid = Grid(N: N, X: X)
     }
     
+    /*
+     Exact
+     */
+    
     func getPointsExact() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
@@ -42,6 +46,10 @@ class PlotterModel {
         return points
     }
     
+    /*
+     Euler methods
+     */
+    
     func getPointsEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
@@ -54,6 +62,15 @@ class PlotterModel {
         return computeLocalErrorsPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
+    func getGlobalErrorsEuler(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
+        guard let equation = equation, let grid = grid else { return [] }
+        
+        return computeGlobalErrorsPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X), N_i: Ni, N_f: Nf)
+    }
+    
+    /*
+     Improved Euler methods
+     */
     
     func getPointsImprovedEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
@@ -67,6 +84,15 @@ class PlotterModel {
         return computeLocalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
+    func getGlobalErrorsImprovedEuler(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
+        guard let equation = equation, let grid = grid else { return [] }
+        
+        return computeGlobalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X), N_i: Ni, N_f: Nf)
+    }
+    
+    /*
+     Runge-Kutta methods
+     */
     
     func getPointsRungeKutta() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
@@ -80,26 +106,33 @@ class PlotterModel {
         return computeLocalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
+    func getGlobalErrorsRungeKutta(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
+        guard let equation = equation, let grid = grid else { return [] }
+        
+        return computeGlobalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X), N_i: Ni, N_f: Nf)
+    }
+    
     /*
      Compute the points and cast them to ChartDataEntry,
      ChartDataEntry class used to plot the graphs.
      */
-    func computeGraphPoints(using method: INumericalMethod) -> [ChartDataEntry] {
+    private func computeGraphPoints(using method: INumericalMethod) -> [ChartDataEntry] {
         let points = method.compute()
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
                    
         return result
     }
     
-    func computeLocalErrorsPoints(using method: INumericalMethod) -> [ChartDataEntry] {
+    private func computeLocalErrorsPoints(using method: INumericalMethod) -> [ChartDataEntry] {
         let points = method.computeLTE()
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
         
         return result
     }
     
-    func computeGlobalErrorsPoints(using method: INumericalMethod, N_i: Int, N_f: Int) -> [ChartDataEntry] {
+    private func computeGlobalErrorsPoints(using method: INumericalMethod, N_i: Int, N_f: Int) -> [ChartDataEntry] {
         let points = method.computeGTE(from: N_i, to: N_f)
+        
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
         
         return result
@@ -149,5 +182,23 @@ class PlotterModel {
         equation?.x_0 = Double(x_0)!
         equation?.y_0 = Double(y_0)!
         grid = Grid(N: Int(N)!, X: Double(X)!)
+    }
+    
+    func checkInputBorders(left: String, right: String) throws {
+        guard Int(left) != nil &&
+              Int(right) != nil
+        else {
+            throw InputDataError.invalid_border
+        }
+        
+        guard Int(left)! >= 2 &&
+              Int(right)! >= 2 
+        else {
+            throw InputDataError.invalid_border
+        }
+        
+        guard Int(left)! < Int(right)! else {
+            throw InputDataError.invalid_borders_inverval
+        }
     }
 }

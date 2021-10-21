@@ -14,7 +14,7 @@ import Foundation
  y(x_0) = C(x_0)^2 - x_0 = y_0 =>
  */
 
-class DifferentialEquationVar1 : IDifferentialEquation {
+class DifferentialEquationVar1: IDifferentialEquation {
     var x_0: Double
     var y_0: Double
     

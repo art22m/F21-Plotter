@@ -16,7 +16,6 @@
 		E53D9ADF2714C18100729B9E /* LocalErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53D9ADE2714C18100729B9E /* LocalErrorViewController.swift */; };
 		E53D9AE12714C18300729B9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E53D9AE02714C18300729B9E /* Assets.xcassets */; };
 		E53D9AE42714C18300729B9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E53D9AE22714C18300729B9E /* Main.storyboard */; };
-		E54B95CC271B1D6C00E95818 /* CustomTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B95CB271B1D6C00E95818 /* CustomTabViewController.swift */; };
 		E54B95CF271B866000E95818 /* GlobalErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B95CE271B866000E95818 /* GlobalErrorViewController.swift */; };
 		E54B95D1271C2CBE00E95818 /* DifferentialEquationVar1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B95D0271C2CBE00E95818 /* DifferentialEquationVar1.swift */; };
 		E572E01D2714E4710090D934 /* INumericalMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E01C2714E4710090D934 /* INumericalMethod.swift */; };
@@ -40,7 +39,6 @@
 		E53D9AE02714C18300729B9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E53D9AE32714C18300729B9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E53D9AE52714C18300729B9E /* ComputationalPracticum.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ComputationalPracticum.entitlements; sourceTree = "<group>"; };
-		E54B95CB271B1D6C00E95818 /* CustomTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabViewController.swift; sourceTree = "<group>"; };
 		E54B95CE271B866000E95818 /* GlobalErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalErrorViewController.swift; sourceTree = "<group>"; };
 		E54B95D0271C2CBE00E95818 /* DifferentialEquationVar1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DifferentialEquationVar1.swift; sourceTree = "<group>"; };
 		E572E01C2714E4710090D934 /* INumericalMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = INumericalMethod.swift; sourceTree = "<group>"; };
@@ -135,7 +133,6 @@
 			children = (
 				E53D9ADE2714C18100729B9E /* LocalErrorViewController.swift */,
 				E54B95CE271B866000E95818 /* GlobalErrorViewController.swift */,
-				E54B95CB271B1D6C00E95818 /* CustomTabViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -267,7 +264,6 @@
 			files = (
 				E528B90D271605F500229635 /* ImprovedEulerMethod.swift in Sources */,
 				E53D9ADF2714C18100729B9E /* LocalErrorViewController.swift in Sources */,
-				E54B95CC271B1D6C00E95818 /* CustomTabViewController.swift in Sources */,
 				E572E0282715739C0090D934 /* TestDiffEq.swift in Sources */,
 				E53D9ADD2714C18100729B9E /* AppDelegate.swift in Sources */,
 				E54B95CF271B866000E95818 /* GlobalErrorViewController.swift in Sources */,

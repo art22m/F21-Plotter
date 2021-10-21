@@ -48,10 +48,10 @@ class PlotterModel {
         return computeGraphPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
-    func getErrorsEuler() -> [ChartDataEntry] {
+    func getLocalErrorsEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeErrorPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeLocalErrorsPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
     
@@ -61,10 +61,10 @@ class PlotterModel {
         return computeGraphPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
-    func getErrorsImproverEuler() -> [ChartDataEntry] {
+    func getLocalErrorsImproverEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeErrorPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeLocalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
     
@@ -74,10 +74,10 @@ class PlotterModel {
         return computeGraphPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
-    func getErrorsRungeKutta() -> [ChartDataEntry] {
+    func getLocalErrorsRungeKutta() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeErrorPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeLocalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
     }
     
     /*
@@ -91,8 +91,15 @@ class PlotterModel {
         return result
     }
     
-    func computeErrorPoints(using method: INumericalMethod) -> [ChartDataEntry] {
+    func computeLocalErrorsPoints(using method: INumericalMethod) -> [ChartDataEntry] {
         let points = method.computeLTE()
+        let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
+        
+        return result
+    }
+    
+    func computeGlobalErrorsPoints(using method: INumericalMethod, N_i: Int, N_f: Int) -> [ChartDataEntry] {
+        let points = method.computeGTE(from: N_i, to: N_f)
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
         
         return result
@@ -118,7 +125,6 @@ class PlotterModel {
               abs(Int(N)!)      <= 10000 &&
               abs(Double(X)!)   <= 10000
         else {
-            print(123)
             throw InputDataError.out_of_boudns
         }
         
@@ -138,8 +144,8 @@ class PlotterModel {
             }
         }
         
-        // Changing parameters
-
+        // Parameters changing after error handlings
+        
         equation?.x_0 = Double(x_0)!
         equation?.y_0 = Double(y_0)!
         grid = Grid(N: Int(N)!, X: Double(X)!)

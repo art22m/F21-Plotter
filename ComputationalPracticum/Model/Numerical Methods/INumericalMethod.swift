@@ -22,5 +22,5 @@ protocol INumericalMethod {
     
     func compute() -> [CGPoint]
     func computeLTE() -> [CGPoint]
-    func computeGTE() -> [CGPoint]
+    func computeGTE(from N_i: Int, to N_f: Int) -> [CGPoint]
 }

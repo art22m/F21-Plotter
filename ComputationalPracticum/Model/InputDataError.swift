@@ -42,7 +42,7 @@ extension InputDataError: CustomStringConvertible {
             case .invalid_N:
                 return "N should be natural number >= 2"
             case .out_of_boudns:
-                return "Absolute value of numbers must not exceed 100,000"
+                return "Absolute value of parameters must not exceed 10,000"
             }
     }
 }

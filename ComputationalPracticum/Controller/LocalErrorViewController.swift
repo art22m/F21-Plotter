@@ -27,7 +27,7 @@ class LocalErrorViewController: NSViewController {
     @IBOutlet weak var plotButton: NSButton!
         
     let alert: NSAlert = NSAlert()
-    let plotter: PlotterModel = PlotterModel(equation: TestDiffEq(x_0: 0, y_0: 0))
+    let plotter: PlotterModel = PlotterModel(equation: DifferentialEquationVar1(x_0: 0, y_0: 0))
     
     override open func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +70,8 @@ class LocalErrorViewController: NSViewController {
         alert.messageText = "Input data error"
         alert.addButton(withTitle: "Okay")
     }
+    
+    // MARK: - IBAction
         
     @IBAction func plotTapped(_ sender: NSButton) {
         // Get entered data from text fields
@@ -104,6 +106,8 @@ class LocalErrorViewController: NSViewController {
         }
     }
     
+    // MARK: - LineCharts drawing
+    
     func drawLineChart() {
         let pointsData = LineChartData()
         let errorsData = LineChartData()
@@ -116,7 +120,7 @@ class LocalErrorViewController: NSViewController {
             dsPoints.colors = [NSUIColor.red]
             pointsData.addDataSet(dsPoints)
             
-            let dsErrors = LineChartDataSet(entries: plotter.getErrorsEuler(), label: "Euler")
+            let dsErrors = LineChartDataSet(entries: plotter.getLocalErrorsEuler(), label: "Euler")
             dsErrors.drawCirclesEnabled = false
             dsErrors.drawValuesEnabled = false
             dsErrors.lineWidth = 2
@@ -132,7 +136,7 @@ class LocalErrorViewController: NSViewController {
             dsPoints.colors = [NSUIColor.blue]
             pointsData.addDataSet(dsPoints)
             
-            let dsErrors = LineChartDataSet(entries: plotter.getErrorsImproverEuler(), label: "Improved Euler")
+            let dsErrors = LineChartDataSet(entries: plotter.getLocalErrorsImproverEuler(), label: "Improved Euler")
             dsErrors.drawCirclesEnabled = false
             dsErrors.drawValuesEnabled = false
             dsErrors.lineWidth = 2
@@ -148,7 +152,7 @@ class LocalErrorViewController: NSViewController {
             dsPoints.colors = [NSUIColor.green]
             pointsData.addDataSet(dsPoints)
             
-            let dsErrors = LineChartDataSet(entries: plotter.getErrorsRungeKutta(), label: "Runge-Kutta")
+            let dsErrors = LineChartDataSet(entries: plotter.getLocalErrorsRungeKutta(), label: "Runge-Kutta")
             dsErrors.drawCirclesEnabled = false
             dsErrors.drawValuesEnabled = false
             dsErrors.lineWidth = 2
@@ -168,14 +172,11 @@ class LocalErrorViewController: NSViewController {
         
         graphsLineChartView.data = pointsData
         errorsLineChartView.data = errorsData
-        
+                    
         // Say to Chart View that we set new data
         graphsLineChartView.notifyDataSetChanged()
-        graphsLineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
-        
         errorsLineChartView.notifyDataSetChanged()
-        errorsLineChartView.animate(xAxisDuration: 0.5, yAxisDuration: 0.0)
-    }
+    }    
 }
 
 // MARK: - Animations

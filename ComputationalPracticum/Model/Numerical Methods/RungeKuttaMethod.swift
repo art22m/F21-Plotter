@@ -50,7 +50,18 @@ class RungeKuttaMethod: INumericalMethod {
         return errorPoints
     }
     
-    func computeGTE() -> [CGPoint] {
-        return []
+    func computeGTE(from N_i: Int, to N_f: Int) -> [CGPoint] {
+        var errorPoints = [CGPoint]()
+        
+        for i in N_i ... N_f {
+            let newMethod = RungeKuttaMethod(solve: equation, N: i, X: grid.X)
+            let LTEpoints = newMethod.computeLTE()
+
+            let mx = LTEpoints.max() { $0.y < $1.y}
+            
+            errorPoints.append(CGPoint(x: CGFloat(i), y: mx?.y ?? 0.0))
+        }
+        
+        return errorPoints
     }
 }

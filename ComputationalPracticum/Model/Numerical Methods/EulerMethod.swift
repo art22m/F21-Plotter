@@ -8,8 +8,8 @@
 import Foundation
 
 class EulerMethod: INumericalMethod {    
-    var grid: Grid
-    var equation: IDifferentialEquation
+    let grid: Grid
+    let equation: IDifferentialEquation
     
     init(solve equotion: IDifferentialEquation, N: Int, X: Double) {
         self.equation = equotion
@@ -17,10 +17,10 @@ class EulerMethod: INumericalMethod {
     }
     
     func compute() -> [CGPoint] {
-        let h = (grid.X - equation.x_0) / (Double(grid.N))
+        let h = (grid.getX() - equation.x_0) / (Double(grid.getN()))
         
         grid.points.append(CGPoint(x: equation.x_0, y: equation.y_0))
-        for i in 1 ... grid.N {
+        for i in 1 ... grid.getN() {
             let x_prev = grid.points[i - 1].x
             let y_prev = grid.points[i - 1].y
             
@@ -48,7 +48,7 @@ class EulerMethod: INumericalMethod {
         var errorPoints = [CGPoint]()
         
         for n in N_i ... N_f {
-            let newMethod = EulerMethod(solve: equation, N: n, X: grid.X)
+            let newMethod = EulerMethod(solve: equation, N: n, X: grid.getX())
             let LTEpoints = newMethod.computeLTE()
 
             let mx = LTEpoints.max() { $0.y < $1.y}

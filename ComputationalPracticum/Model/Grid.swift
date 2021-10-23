@@ -9,9 +9,9 @@ import Foundation
 import Charts
 
 class Grid {
+    private var N: Int // Number of points
+    private var X: Double // X bound
     var points: [CGPoint]
-    var N: Int // Number of points
-    var X: Double // X bound
     
     init() {
         points = []
@@ -23,5 +23,13 @@ class Grid {
         points = []
         self.N = N
         self.X = X
-    }    
+    }
+    
+    func getN() -> Int {
+        return N
+    }
+    
+    func getX() -> Double {
+        return X
+    }
 }

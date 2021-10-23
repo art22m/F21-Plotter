@@ -39,6 +39,4 @@ class DifferentialEquationVar1: IDifferentialEquation {
     func getPointsOfDiscontinuity() -> [Double] {
         return [0]
     }
-    
-    
 }

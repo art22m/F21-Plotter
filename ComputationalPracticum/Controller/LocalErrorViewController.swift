@@ -171,7 +171,7 @@ class LocalErrorViewController: NSViewController {
         
         graphsLineChartView.data = pointsData
         errorsLineChartView.data = errorsData
-                    
+
         // Say to Chart View that we set new data
         graphsLineChartView.notifyDataSetChanged()
         errorsLineChartView.notifyDataSetChanged()

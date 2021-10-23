@@ -61,7 +61,7 @@ class GlobalErrorViewController: NSViewController {
         // the plotter model and plot the graphs.
         
         do {
-            try plotter?.checkInputBorders(left: Ni, right: Nf)
+            try plotter?.checkInputBorders(N_i: Ni, N_f: Nf)
             drawLineChart(Ni: Int(Ni)!, Nf: Int(Nf)!)
         } catch InputDataError.invalid_borders_inverval {
             alert.informativeText = InputDataError.invalid_borders_inverval.description

@@ -8,10 +8,11 @@
 import Foundation
 
 protocol IDifferentialEquation {
-    var x_0: Double { get set }
+    var x_0: Double { get set}
     var y_0: Double { get set }
     
     func getExactValue(x: Double) -> Double
     func getDerivativeValue(x: Double, y: Double) -> Double
     func getPointsOfDiscontinuity() -> [Double]
 }
+

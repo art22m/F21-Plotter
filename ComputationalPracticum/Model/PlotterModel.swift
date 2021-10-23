@@ -9,8 +9,8 @@ import Foundation
 import Charts
 
 class PlotterModel {
-    var equation: IDifferentialEquation?
-    var grid: Grid?
+    private var equation: IDifferentialEquation?
+    private var grid: Grid?
     
     init(equation: IDifferentialEquation) {
         // Equation
@@ -30,11 +30,11 @@ class PlotterModel {
     func getPointsExact() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        let h = (grid.X - equation.x_0) / Double(grid.N)
+        let h = (grid.getX() - equation.x_0) / Double(grid.getN())
         var points = [ChartDataEntry]()
         
         points.append(ChartDataEntry(x: equation.x_0, y: equation.y_0))
-        for i in 1 ... grid.N {
+        for i in 1 ... grid.getN() {
             let x = points[i - 1].x + h
             let y = equation.getExactValue(x: x)
             
@@ -49,19 +49,19 @@ class PlotterModel {
     func getPointsEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeGraphPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeGraphPoints(using: EulerMethod(solve: equation, N: grid.getN(), X: grid.getX()))
     }
     
     func getLocalErrorsEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeLocalErrorsPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeLocalErrorsPoints(using: EulerMethod(solve: equation, N: grid.getN(), X: grid.getX()))
     }
     
     func getGlobalErrorsEuler(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeGlobalErrorsPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X), N_i: Ni, N_f: Nf)
+        return computeGlobalErrorsPoints(using: EulerMethod(solve: equation, N: grid.getN(), X: grid.getX()), N_i: Ni, N_f: Nf)
     }
     
     // MARK: - Improved Euler methods
@@ -69,19 +69,19 @@ class PlotterModel {
     func getPointsImprovedEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeGraphPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeGraphPoints(using: ImprovedEulerMethod(solve: equation, N: grid.getN(), X: grid.getX()))
     }
     
     func getLocalErrorsImproverEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeLocalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeLocalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.getN(), X: grid.getX()))
     }
     
     func getGlobalErrorsImprovedEuler(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeGlobalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X), N_i: Ni, N_f: Nf)
+        return computeGlobalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.getN(), X: grid.getX()), N_i: Ni, N_f: Nf)
     }
     
     // MARK: - Runge-Kutta methods
@@ -89,19 +89,19 @@ class PlotterModel {
     func getPointsRungeKutta() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeGraphPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeGraphPoints(using: RungeKuttaMethod(solve: equation, N: grid.getN(), X: grid.getX()))
     }
     
     func getLocalErrorsRungeKutta() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeLocalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X))
+        return computeLocalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.getN(), X: grid.getX()))
     }
     
     func getGlobalErrorsRungeKutta(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
         
-        return computeGlobalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.N, X: grid.X), N_i: Ni, N_f: Nf)
+        return computeGlobalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.getN(), X: grid.getX()), N_i: Ni, N_f: Nf)
     }
     
     /*
@@ -176,20 +176,20 @@ class PlotterModel {
         grid = Grid(N: Int(N)!, X: Double(X)!)
     }
     
-    func checkInputBorders(left: String, right: String) throws {
-        guard Int(left) != nil &&
-              Int(right) != nil
+    func checkInputBorders(N_i: String, N_f: String) throws {
+        guard Int(N_i) != nil &&
+              Int(N_f) != nil
         else {
             throw InputDataError.invalid_border
         }
         
-        guard Int(left)! >= 2 &&
-              Int(right)! >= 2 
+        guard Int(N_i)! >= 2 &&
+              Int(N_f)! >= 2 
         else {
             throw InputDataError.invalid_border
         }
         
-        guard Int(left)! < Int(right)! else {
+        guard Int(N_i)! < Int(N_f)! else {
             throw InputDataError.invalid_borders_inverval
         }
     }

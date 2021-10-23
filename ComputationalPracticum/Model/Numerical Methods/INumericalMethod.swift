@@ -17,8 +17,8 @@ import Foundation
  */
 
 protocol INumericalMethod {
-    var grid: Grid { get set }
-    var equation: IDifferentialEquation { get set }
+    var grid: Grid { get }
+    var equation: IDifferentialEquation { get }
     
     func compute() -> [CGPoint]
     func computeLTE() -> [CGPoint]

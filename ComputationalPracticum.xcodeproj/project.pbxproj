@@ -22,7 +22,6 @@
 		E572E0222714E6450090D934 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E0212714E6450090D934 /* Grid.swift */; };
 		E572E0242714E9380090D934 /* IDifferentialEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E0232714E9380090D934 /* IDifferentialEquation.swift */; };
 		E572E02627156F040090D934 /* EulerMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E02527156F040090D934 /* EulerMethod.swift */; };
-		E572E0282715739C0090D934 /* TestDiffEq.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572E0272715739C0090D934 /* TestDiffEq.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +44,6 @@
 		E572E0212714E6450090D934 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		E572E0232714E9380090D934 /* IDifferentialEquation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDifferentialEquation.swift; sourceTree = "<group>"; };
 		E572E02527156F040090D934 /* EulerMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EulerMethod.swift; sourceTree = "<group>"; };
-		E572E0272715739C0090D934 /* TestDiffEq.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDiffEq.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +90,6 @@
 			isa = PBXGroup;
 			children = (
 				E572E0232714E9380090D934 /* IDifferentialEquation.swift */,
-				E572E0272715739C0090D934 /* TestDiffEq.swift */,
 				E54B95D0271C2CBE00E95818 /* DifferentialEquationVar1.swift */,
 			);
 			path = "Differential Equations";
@@ -264,7 +261,6 @@
 			files = (
 				E528B90D271605F500229635 /* ImprovedEulerMethod.swift in Sources */,
 				E53D9ADF2714C18100729B9E /* LocalErrorViewController.swift in Sources */,
-				E572E0282715739C0090D934 /* TestDiffEq.swift in Sources */,
 				E53D9ADD2714C18100729B9E /* AppDelegate.swift in Sources */,
 				E54B95CF271B866000E95818 /* GlobalErrorViewController.swift in Sources */,
 				E572E0222714E6450090D934 /* Grid.swift in Sources */,

@@ -34,7 +34,7 @@ class RungeKuttaMethod: INumericalMethod {
             
             grid.points.append(CGPoint(x: x, y: y))
         }
-
+        
         return grid.points
     }
     
@@ -43,7 +43,7 @@ class RungeKuttaMethod: INumericalMethod {
         let graphPoints = compute()
         
         for point in graphPoints {
-            let error = abs(equation.getFunctionValue(x: point.x) - point.y)
+            let error = abs(equation.getExactValue(x: point.x) - point.y)
             errorPoints.append(CGPoint(x: point.x, y: error))
         }
         
@@ -53,15 +53,15 @@ class RungeKuttaMethod: INumericalMethod {
     func computeGTE(from N_i: Int, to N_f: Int) -> [CGPoint] {
         var errorPoints = [CGPoint]()
         
-        for i in N_i ... N_f {
-            let newMethod = RungeKuttaMethod(solve: equation, N: i, X: grid.X)
+        for n in N_i ... N_f {
+            let newMethod = RungeKuttaMethod(solve: equation, N: n, X: grid.X)
             let LTEpoints = newMethod.computeLTE()
 
             let mx = LTEpoints.max() { $0.y < $1.y}
             
-            errorPoints.append(CGPoint(x: CGFloat(i), y: mx?.y ?? 0.0))
+            errorPoints.append(CGPoint(x: CGFloat(n), y: mx?.y ?? 0.0))
         }
-        
+    
         return errorPoints
     }
 }

@@ -23,10 +23,10 @@ class DifferentialEquationVar1: IDifferentialEquation {
         self.y_0 = y_0
     }
     
-    func getFunctionValue(x: Double) -> Double {
+    func getExactValue(x: Double) -> Double {
         let C = (y_0 + x_0) / (x_0 * x_0)
-        let value = C * x * x + x
-        
+        let value = C * x * x - x
+
         return value
     }
     

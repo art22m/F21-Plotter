@@ -25,9 +25,7 @@ class PlotterModel {
         self.grid = Grid(N: N, X: X)
     }
     
-    /*
-     Exact
-     */
+    // MARK: - Exact
     
     func getPointsExact() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
@@ -38,7 +36,7 @@ class PlotterModel {
         points.append(ChartDataEntry(x: equation.x_0, y: equation.y_0))
         for i in 1 ... grid.N {
             let x = points[i - 1].x + h
-            let y = equation.getFunctionValue(x: x)
+            let y = equation.getExactValue(x: x)
             
             points.append(ChartDataEntry(x: x, y: y))
         }
@@ -46,9 +44,7 @@ class PlotterModel {
         return points
     }
     
-    /*
-     Euler methods
-     */
+    // MARK: - Euler methods
     
     func getPointsEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
@@ -68,9 +64,7 @@ class PlotterModel {
         return computeGlobalErrorsPoints(using: EulerMethod(solve: equation, N: grid.N, X: grid.X), N_i: Ni, N_f: Nf)
     }
     
-    /*
-     Improved Euler methods
-     */
+    // MARK: - Improved Euler methods
     
     func getPointsImprovedEuler() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
@@ -90,9 +84,7 @@ class PlotterModel {
         return computeGlobalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.N, X: grid.X), N_i: Ni, N_f: Nf)
     }
     
-    /*
-     Runge-Kutta methods
-     */
+    // MARK: - Runge-Kutta methods
     
     func getPointsRungeKutta() -> [ChartDataEntry] {
         guard let equation = equation, let grid = grid else { return [] }
@@ -116,6 +108,7 @@ class PlotterModel {
      Compute the points and cast them to ChartDataEntry,
      ChartDataEntry class used to plot the graphs.
      */
+    
     private func computeGraphPoints(using method: INumericalMethod) -> [ChartDataEntry] {
         let points = method.compute()
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
@@ -132,7 +125,6 @@ class PlotterModel {
     
     private func computeGlobalErrorsPoints(using method: INumericalMethod, N_i: Int, N_f: Int) -> [ChartDataEntry] {
         let points = method.computeGTE(from: N_i, to: N_f)
-        
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
         
         return result

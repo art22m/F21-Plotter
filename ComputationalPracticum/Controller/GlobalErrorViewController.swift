@@ -46,6 +46,7 @@ class GlobalErrorViewController: NSViewController {
         errorsLineChartView.borderColor = NSColor.lightGray
         animateNoDataText()
         
+        
         // Background View
         scrollView.backgroundColor = NSColor(red: 234.0/255.0, green: 234.0/255.0, blue: 234.0/255.0, alpha: 1.0)
     }
@@ -73,7 +74,7 @@ class GlobalErrorViewController: NSViewController {
             alert.runModal()
         }
     }
-    
+     
     @IBAction func backTapped(_ sender: NSButton) {
         self.dismiss(self)
     }

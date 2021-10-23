@@ -91,7 +91,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="184" y="-111"/>
+            <point key="canvasLocation" x="-333" y="-189"/>
         </scene>
         <!--Graphs and Local Errors-->
         <scene sceneID="mQG-Dw-vBn">
@@ -616,10 +616,10 @@
                                 </scroller>
                             </scrollView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="TrC-CR-HBy" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="270" y="60" width="650" height="500"/>
+                                <rect key="frame" x="270" y="10" width="650" height="550"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="650" id="VVE-kr-9SZ"/>
-                                    <constraint firstAttribute="height" constant="500" id="lJl-0e-YZJ"/>
+                                    <constraint firstAttribute="height" constant="550" id="lJl-0e-YZJ"/>
                                 </constraints>
                             </customView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jYc-rn-IUJ">

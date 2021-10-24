@@ -8,6 +8,11 @@
 import Foundation
 import Charts
 
+/*
+ PlotterModel class contains all the logic.
+ It allows to get the points to plot in controller classes,
+ fetch error, and so on.
+ */
 class PlotterModel {
     private var equation: IDifferentialEquation?
     private var grid: Grid?
@@ -150,7 +155,7 @@ class PlotterModel {
               abs(Int(N)!)      <= 10000 &&
               abs(Double(X)!)   <= 10000
         else {
-            throw InputDataError.out_of_boudns
+            throw InputDataError.out_of_bounds
         }
         
         guard Int(N)! >= 2 else {
@@ -176,6 +181,9 @@ class PlotterModel {
         grid = Grid(N: Int(N)!, X: Double(X)!)
     }
     
+    /*
+     Check for the borders input data erors and throw them if occurs
+     */
     func checkInputBorders(N_i: String, N_f: String) throws {
         guard Int(N_i) != nil &&
               Int(N_f) != nil
@@ -183,8 +191,8 @@ class PlotterModel {
             throw InputDataError.invalid_border
         }
         
-        guard Int(N_i)! >= 2 &&
-              Int(N_f)! >= 2 
+        guard Int(N_i)! >= 2 && Int(N_i)! <= 2000 &&
+              Int(N_f)! >= 2 && Int(N_f)! <= 2000
         else {
             throw InputDataError.invalid_border
         }

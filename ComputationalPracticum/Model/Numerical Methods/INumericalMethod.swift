@@ -11,9 +11,10 @@ import Foundation
  INumericalMethod - interface for numerical method;
  It contains 1) Grid which we need for plottings graphs
              2) Equotion we want to solve
-             3) Compute function which return array of struct Point.
-             4) Compute local truncation error function
-             5) Compute global truncation error function
+             3) Compute method returning array of points
+             calculated using numerical method
+             4) Compute local truncation error method
+             5) Compute global truncation error method
  */
 
 protocol INumericalMethod {

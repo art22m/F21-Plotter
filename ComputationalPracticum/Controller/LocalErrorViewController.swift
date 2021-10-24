@@ -96,8 +96,8 @@ class LocalErrorViewController: NSViewController {
         } catch InputDataError.invalid_N {
             alert.informativeText = InputDataError.invalid_N.description
             alert.runModal()
-        } catch InputDataError.out_of_boudns {
-            alert.informativeText = InputDataError.out_of_boudns.description
+        } catch InputDataError.out_of_bounds {
+            alert.informativeText = InputDataError.out_of_bounds.description
             alert.runModal()
         } catch {
             alert.informativeText = "Something strange occur"

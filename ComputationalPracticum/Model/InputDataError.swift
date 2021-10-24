@@ -24,7 +24,7 @@ enum InputDataError: Error {
     case invalid_N
     
     // Throw when user enter very large/small numbers
-    case out_of_boudns
+    case out_of_bounds
     
     // Throw when user enter not natural border
     case invalid_border
@@ -47,12 +47,12 @@ extension InputDataError: CustomStringConvertible {
                 return "Specify all the data correctly and tap plot button"
             case .invalid_N:
                 return "N should be natural number >= 2"
-            case .out_of_boudns:
+            case .out_of_bounds:
                 return "Absolute value of parameters must not exceed 10,000"
             case .invalid_borders_inverval:
                 return "Value of left border should be less than right"
             case .invalid_border:
-                return "Value of border should be natural number >= 2"
+                return "Border value is natural number more than 2 and less than 2,000"
             }
     }
 }

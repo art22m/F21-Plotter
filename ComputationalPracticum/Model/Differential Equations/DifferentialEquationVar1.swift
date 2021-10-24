@@ -11,7 +11,6 @@ import Foundation
  Class for differential equation of Variant 1
  y' = 1 + 2y/x
  y(x) = Cx^2 - x <- general solution
- y(x_0) = C(x_0)^2 - x_0 = y_0 =>
  */
 
 class DifferentialEquationVar1: IDifferentialEquation {

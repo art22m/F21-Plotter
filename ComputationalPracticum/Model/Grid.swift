@@ -8,6 +8,10 @@
 import Foundation
 import Charts
 
+/*
+ Grid class representing plot, i.e. contains number of points,
+ bound of X axis and points to plot.
+ */
 class Grid {
     private var N: Int // Number of points
     private var X: Double // X bound

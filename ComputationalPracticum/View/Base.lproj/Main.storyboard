@@ -617,7 +617,18 @@
                             </scrollView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="TrC-CR-HBy" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="270" y="10" width="650" height="550"/>
+                                <subviews>
+                                    <progressIndicator maxValue="100" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="j1n-9J-6mf">
+                                        <rect key="frame" x="313" y="263" width="25" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="B0R-i2-saf"/>
+                                            <constraint firstAttribute="width" constant="25" id="i6S-rP-2ye"/>
+                                        </constraints>
+                                    </progressIndicator>
+                                </subviews>
                                 <constraints>
+                                    <constraint firstItem="j1n-9J-6mf" firstAttribute="centerY" secondItem="TrC-CR-HBy" secondAttribute="centerY" id="86a-QM-AvD"/>
+                                    <constraint firstItem="j1n-9J-6mf" firstAttribute="centerX" secondItem="TrC-CR-HBy" secondAttribute="centerX" id="CmQ-YH-6Ea"/>
                                     <constraint firstAttribute="width" constant="650" id="VVE-kr-9SZ"/>
                                     <constraint firstAttribute="height" constant="550" id="lJl-0e-YZJ"/>
                                 </constraints>
@@ -654,6 +665,7 @@
                         <outlet property="eulerCheckBox" destination="IZt-5H-SZd" id="Edm-4S-44H"/>
                         <outlet property="improvedEulerCheckBox" destination="iBc-i2-tpb" id="9uH-e1-i9a"/>
                         <outlet property="plotButton" destination="Bwk-UX-Ze6" id="Vwl-J7-glv"/>
+                        <outlet property="progressIndicator" destination="j1n-9J-6mf" id="6ot-2E-ETo"/>
                         <outlet property="rungeKuttaCheckBox" destination="Cu4-QN-0XS" id="4nt-52-XYz"/>
                         <outlet property="scrollView" destination="E7i-Ca-Rr3" id="3WV-de-zKo"/>
                     </connections>

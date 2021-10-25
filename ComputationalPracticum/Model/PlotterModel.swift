@@ -49,90 +49,40 @@ class PlotterModel {
         return points
     }
     
-    // MARK: - Euler methods
-    
-    func getPointsEuler() -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeGraphPoints(using: EulerMethod(solve: equation, N: grid.getN(), X: grid.getX()))
-    }
-    
-    func getLocalErrorsEuler() -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeLocalErrorsPoints(using: EulerMethod(solve: equation, N: grid.getN(), X: grid.getX()))
-    }
-    
-    func getGlobalErrorsEuler(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeGlobalErrorsPoints(using: EulerMethod(solve: equation, N: grid.getN(), X: grid.getX()), N_i: Ni, N_f: Nf)
-    }
-    
-    // MARK: - Improved Euler methods
-    
-    func getPointsImprovedEuler() -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeGraphPoints(using: ImprovedEulerMethod(solve: equation, N: grid.getN(), X: grid.getX()))
-    }
-    
-    func getLocalErrorsImproverEuler() -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeLocalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.getN(), X: grid.getX()))
-    }
-    
-    func getGlobalErrorsImprovedEuler(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeGlobalErrorsPoints(using: ImprovedEulerMethod(solve: equation, N: grid.getN(), X: grid.getX()), N_i: Ni, N_f: Nf)
-    }
-    
-    // MARK: - Runge-Kutta methods
-    
-    func getPointsRungeKutta() -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeGraphPoints(using: RungeKuttaMethod(solve: equation, N: grid.getN(), X: grid.getX()))
-    }
-    
-    func getLocalErrorsRungeKutta() -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeLocalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.getN(), X: grid.getX()))
-    }
-    
-    func getGlobalErrorsRungeKutta(from Ni: Int, to Nf: Int) -> [ChartDataEntry] {
-        guard let equation = equation, let grid = grid else { return [] }
-        
-        return computeGlobalErrorsPoints(using: RungeKuttaMethod(solve: equation, N: grid.getN(), X: grid.getX()), N_i: Ni, N_f: Nf)
-    }
-    
     /*
      Compute the points and cast them to ChartDataEntry,
      ChartDataEntry class used to plot the graphs.
      */
     
-    private func computeGraphPoints(using method: INumericalMethod) -> [ChartDataEntry] {
-        let points = method.compute()
-        let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
-                   
-        return result
-    }
-    
-    private func computeLocalErrorsPoints(using method: INumericalMethod) -> [ChartDataEntry] {
-        let points = method.computeLTE()
+    func computeGraphPoints(using method: MethodType) -> [ChartDataEntry] {
+        let numericalMethod: INumericalMethod? = getMethod(method: method)
+        guard let numericalMethod = numericalMethod else { return [] }
+        
+        let points = numericalMethod.compute()
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
         
         return result
     }
     
-    private func computeGlobalErrorsPoints(using method: INumericalMethod, N_i: Int, N_f: Int) -> [ChartDataEntry] {
-        let points = method.computeGTE(from: N_i, to: N_f)
+    func computeLocalErrorsPoints(using method: MethodType) -> [ChartDataEntry] {
+        let numericalMethod: INumericalMethod? = getMethod(method: method)
+        guard let numericalMethod = numericalMethod else { return [] }
+        
+        let points = numericalMethod.computeLTE()
         let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
         
         return result
+    }
+    
+    func computeGlobalErrorsPoints(using method: MethodType, N_i: Int, N_f: Int, completion: @escaping([ChartDataEntry]) -> Void) {
+        let numericalMethod: INumericalMethod? = getMethod(method: method)
+        guard let numericalMethod = numericalMethod else { return }
+        
+        DispatchQueue.global().async {
+            let points = numericalMethod.computeGTE(from: N_i, to: N_f)
+            let result = points.map{ChartDataEntry(x: $0.x, y: $0.y)}
+            completion(result)
+        }
     }
     
     
@@ -199,6 +149,18 @@ class PlotterModel {
         
         guard Int(N_i)! < Int(N_f)! else {
             throw InputDataError.invalid_borders_inverval
+        }
+    }
+    
+    private func getMethod(method: MethodType) -> INumericalMethod? {
+        guard let equation = equation, let grid = grid else { return nil }
+        switch method {
+        case .EULER:
+                return EulerMethod(solve: equation, N: grid.getN(), X: grid.getX())
+        case .IMPROVED_EULER:
+                return ImprovedEulerMethod(solve: equation, N: grid.getN(), X: grid.getX())
+        case .RUNGE_KUTTA:
+                return RungeKuttaMethod(solve: equation, N: grid.getN(), X: grid.getX())
         }
     }
 }

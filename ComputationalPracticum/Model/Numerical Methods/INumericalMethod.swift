@@ -25,3 +25,9 @@ protocol INumericalMethod {
     func computeLTE() -> [CGPoint]
     func computeGTE(from N_i: Int, to N_f: Int) -> [CGPoint]
 }
+
+enum MethodType {
+    case EULER
+    case IMPROVED_EULER
+    case RUNGE_KUTTA
+}

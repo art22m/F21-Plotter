@@ -112,14 +112,14 @@ class LocalErrorViewController: NSViewController {
         let errorsData = LineChartData()
         
         if eulerCheckBox.state == .on {
-            let dsPoints = LineChartDataSet(entries: plotter.getPointsEuler(), label: "Euler")
+            let dsPoints = LineChartDataSet(entries: plotter.computeGraphPoints(using: .EULER), label: "Euler")
             dsPoints.drawCirclesEnabled = false
             dsPoints.drawValuesEnabled = false
             dsPoints.lineWidth = 2
             dsPoints.colors = [NSUIColor.red]
             pointsData.addDataSet(dsPoints)
             
-            let dsErrors = LineChartDataSet(entries: plotter.getLocalErrorsEuler(), label: "Euler")
+            let dsErrors = LineChartDataSet(entries: plotter.computeLocalErrorsPoints(using: .EULER), label: "Euler")
             dsErrors.drawCirclesEnabled = false
             dsErrors.drawValuesEnabled = false
             dsErrors.lineWidth = 2
@@ -128,14 +128,14 @@ class LocalErrorViewController: NSViewController {
         }
         
         if improvedEulerCheckBox.state == .on {
-            let dsPoints = LineChartDataSet(entries: plotter.getPointsImprovedEuler(), label: "Improved Euler")
+            let dsPoints = LineChartDataSet(entries: plotter.computeGraphPoints(using: .IMPROVED_EULER), label: "Improved Euler")
             dsPoints.drawCirclesEnabled = false
             dsPoints.drawValuesEnabled = false
             dsPoints.lineWidth = 2
             dsPoints.colors = [NSUIColor.blue]
             pointsData.addDataSet(dsPoints)
             
-            let dsErrors = LineChartDataSet(entries: plotter.getLocalErrorsImproverEuler(), label: "Improved Euler")
+            let dsErrors = LineChartDataSet(entries: plotter.computeLocalErrorsPoints(using: .IMPROVED_EULER), label: "Improved Euler")
             dsErrors.drawCirclesEnabled = false
             dsErrors.drawValuesEnabled = false
             dsErrors.lineWidth = 2
@@ -144,14 +144,14 @@ class LocalErrorViewController: NSViewController {
         }
         
         if rungeKuttaCheckBox.state == .on {
-            let dsPoints = LineChartDataSet(entries: plotter.getPointsRungeKutta(), label: "Runge-Kutta")
+            let dsPoints = LineChartDataSet(entries: plotter.computeGraphPoints(using: .RUNGE_KUTTA), label: "Runge-Kutta")
             dsPoints.drawCirclesEnabled = false
             dsPoints.drawValuesEnabled = false
             dsPoints.lineWidth = 2
             dsPoints.colors = [NSUIColor.green]
             pointsData.addDataSet(dsPoints)
             
-            let dsErrors = LineChartDataSet(entries: plotter.getLocalErrorsRungeKutta(), label: "Runge-Kutta")
+            let dsErrors = LineChartDataSet(entries: plotter.computeLocalErrorsPoints(using: .RUNGE_KUTTA), label: "Runge-Kutta")
             dsErrors.drawCirclesEnabled = false
             dsErrors.drawValuesEnabled = false
             dsErrors.lineWidth = 2

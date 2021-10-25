@@ -14,6 +14,7 @@ class GlobalErrorViewController: NSViewController {
     // MARK: - @IBOutlet
     
     @IBOutlet weak var scrollView: NSScrollView!
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
     
     @IBOutlet var errorsLineChartView: LineChartView!
     
@@ -46,6 +47,7 @@ class GlobalErrorViewController: NSViewController {
         errorsLineChartView.borderColor = NSColor.lightGray
         animateNoDataText()
         
+        progressIndicator.isHidden = true
         
         // Background View
         scrollView.backgroundColor = NSColor(red: 234.0/255.0, green: 234.0/255.0, blue: 234.0/255.0, alpha: 1.0)
@@ -83,38 +85,63 @@ class GlobalErrorViewController: NSViewController {
     
     func drawLineChart(Ni: Int, Nf: Int) {
         let errorsData = LineChartData()
+        progressIndicator.isHidden = false
+        progressIndicator.startAnimation(self)
         
         if eulerCheckBox.state == .on {
-            let dsErrors = LineChartDataSet(entries: plotter?.getGlobalErrorsEuler(from: Ni, to: Nf), label: "Euler")
-            dsErrors.drawCirclesEnabled = false
-            dsErrors.drawValuesEnabled = false
-            dsErrors.lineWidth = 2
-            dsErrors.colors = [NSUIColor.red]
-            errorsData.addDataSet(dsErrors)
+            plotter?.computeGlobalErrorsPoints(using: .EULER, N_i: Ni, N_f: Nf, completion: { points in
+                let dsErrors = LineChartDataSet(entries: points, label: "Euler")
+                dsErrors.drawCirclesEnabled = false
+                dsErrors.drawValuesEnabled = false
+                dsErrors.lineWidth = 2
+                dsErrors.colors = [NSUIColor.red]
+                errorsData.addDataSet(dsErrors)
+                
+                DispatchQueue.main.async {
+                    self.errorsLineChartView.data = errorsData
+                    self.errorsLineChartView.notifyDataSetChanged()
+                    self.progressIndicator.stopAnimation(self)
+                    self.progressIndicator.isHidden = true
+                }
+            })
         }
         
         if improvedEulerCheckBox.state == .on {
-            let dsErrors = LineChartDataSet(entries: plotter?.getGlobalErrorsImprovedEuler(from: Ni, to: Nf), label: "Improved Euler")
-            dsErrors.drawCirclesEnabled = false
-            dsErrors.drawValuesEnabled = false
-            dsErrors.lineWidth = 2
-            dsErrors.colors = [NSUIColor.blue]
-            errorsData.addDataSet(dsErrors)
+            plotter?.computeGlobalErrorsPoints(using: .IMPROVED_EULER, N_i: Ni, N_f: Nf, completion: { points in
+                let dsErrors = LineChartDataSet(entries: points, label: "Improved Euler")
+                dsErrors.drawCirclesEnabled = false
+                dsErrors.drawValuesEnabled = false
+                dsErrors.lineWidth = 2
+                dsErrors.colors = [NSUIColor.blue]
+                errorsData.addDataSet(dsErrors)
+                
+                DispatchQueue.main.async {
+                    self.errorsLineChartView.data = errorsData
+                    self.errorsLineChartView.notifyDataSetChanged()
+                    self.progressIndicator.stopAnimation(self)
+                    self.progressIndicator.isHidden = true
+                }
+            })
         }
         
         if rungeKuttaCheckBox.state == .on {
-            let dsErrors = LineChartDataSet(entries: plotter?.getGlobalErrorsRungeKutta(from: Ni, to: Nf), label: "Runge-Kutta")
-            dsErrors.drawCirclesEnabled = false
-            dsErrors.drawValuesEnabled = false
-            dsErrors.lineWidth = 2
-            dsErrors.colors = [NSUIColor.green]
-            errorsData.addDataSet(dsErrors)
+            plotter?.computeGlobalErrorsPoints(using: .RUNGE_KUTTA, N_i: Ni, N_f: Nf, completion: { points in
+                let dsErrors = LineChartDataSet(entries: points, label: "Runge-Kutta")
+                dsErrors.drawCirclesEnabled = false
+                dsErrors.drawValuesEnabled = false
+                dsErrors.lineWidth = 2
+                dsErrors.colors = [NSUIColor.green]
+                errorsData.addDataSet(dsErrors)
+                
+                DispatchQueue.main.async {
+                    self.errorsLineChartView.data = errorsData
+                    self.errorsLineChartView.notifyDataSetChanged()
+                    self.progressIndicator.stopAnimation(self)
+                    self.progressIndicator.isHidden = true
+                }
+            })
         }
-        
-        errorsLineChartView.data = errorsData
-        errorsLineChartView.notifyDataSetChanged()
     }
-    
 }
 
 // MARK: - Animations

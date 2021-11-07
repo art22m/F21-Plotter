@@ -124,6 +124,11 @@ class PlotterModel {
             }
         }
         
+        let h = (Double(X)! - Double(x_0)!) / Double(N)!
+        guard h < 1 else {
+            throw InputDataError.invalid_h
+        }
+        
         // Parameters changing after error handlings
         
         equation?.x_0 = Double(x_0)!

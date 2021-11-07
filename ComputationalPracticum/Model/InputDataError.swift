@@ -31,6 +31,8 @@ enum InputDataError: Error {
     
     // Throw whent user enter value of left border less than right
     case invalid_borders_inverval
+    
+    case invalid_h
 }
 
 /*
@@ -53,6 +55,8 @@ extension InputDataError: CustomStringConvertible {
                 return "Value of left border should be less than right"
             case .invalid_border:
                 return "Border value is natural number more than 2 and less than 2,000"
+            case .invalid_h:
+                return "h should be less than 1"
             }
     }
 }

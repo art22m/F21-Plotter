@@ -6,7 +6,7 @@
 
 ### Objectives
 
-Implement using your favorite programming language, an application with a graphical interface that allows you to investigate numerical methods for solving a differential equation.
+Implement using your favorite programming language, an application with a graphical interface that allows to investigate numerical methods for solving a differential equation.
 
 ### Tasks
 
@@ -18,52 +18,7 @@ Implement using your favorite programming language, an application with a graphi
 
 ### Analytical solution
 
-$\\ IVP: \begin{cases}y' = 1 + 2 \frac{y}{x} \\ y(1) = 2 \\ x \in (1, 10) \end{cases}$ 
-
-- Firstly, we need to solve differential equation $y' = 1 + 2 \frac{y}{x}$
-    1. The given function has a point of discontinuity at $x = 0$. Assume that $x \neq 0.$
-      
-        $\frac{dy}{dx} = 1 + 2 \frac{y}{x}$
-        
-        $dy = (1 + 2\frac{y}{x})dx$
-        
-    2. Equation is not in separable form, but it's coefficients are homogeneous with degree 1
-    3. Assuming $x \neq 0$, try substitution $u = \frac{y}{x} \leftrightarrow y = ux$:
-      
-        $dy = xdu + udx$
-        
-        $xdu + udx = (1 + 2u)dx$
-        
-        $xdu = (1+u)dx$
-        
-    4. Since $x \neq 0$ and assuming $u \neq -1$, we come to the following separable equation:
-      
-        $\frac{du}{1+u} = \frac{dx}{x}$ 
-        
-    5. Solving the separable equation, we find an implicit general solution:
-      
-         $\int\frac{du}{1+u} = \int\frac{dx}{x}$ 
-            
-        $\int\frac{d(1+u)}{1+u} = \int\frac{dx}{x}$ 
-        
-        $ln(u+1) = ln(x) + C$
-        
-        $u + 1 = Cx$
-        
-    6. Using backward substitution, we get the most general non-trivial solution:
-      
-        $\frac{y}{x} + 1 = Cx$
-        
-        $y = Cx^2 - x$ 
-    
-- Since we have the initial value problem:
-  
-    $y(1) = C-1 = 2 \\ C - 1 = 2 \\ C = 3$
-    
-    Therefore,  $y = 3x^2-x$
-    
-
-**Answer:** given equation does not have a trivial solution and has the solution of initial value problem equal to $y = 3x^2-x$, without points of discontinuity on the specified interval $x \in (1, 10)$
+<img src="https://files.fm/thumb_show.php?i=tfuqhe32v" alt="Untitled" style="zoom: 67%;" />
 
 ### Technologies used, GUI description
 
@@ -72,21 +27,21 @@ In this application Model-View-Controller design pattern is used, code is organi
 
 The app has two screens. The first screen is used to display plots of approximations obtained by numerical methods and plots of Local Truncation Errors. User is allowed to change $x_0, y_0, X, N$ values.
 
-![Untitled](https://files.fm/thumb_show.php?i=mj65wffp9)
+<img src="https://files.fm/thumb_show.php?i=d92f6ezeu" alt="Untitled" style="zoom:50%;" />
 
 The second screen contains Global Truncation Errors plots. User is allowed to change the range of grid steps to compare global truncation errors of numerical methods.
 
-![Untitled](https://files.fm/thumb_show.php?i=yv36p7wkj)
+<img src="https://files.fm/thumb_show.php?i=axbbgt6xg" alt="Untitled" style="zoom:50%;" />
 
 Each screen has checkboxes that allow to show/hide plots describing a correspondent solution. Text fields in which the user enters the data described above. Plot button that displays plots based on data from text fields and checkboxes. The application also contains error handling, which prevents the user from entering incorrect data.
 
 ### UML diagram
 
-![Untitled](https://files.fm/thumb_show.php?i=2ndjcavcr)
+<img src="https://files.fm/thumb_show.php?i=thqbf4hr5" alt="Untitled"  />
 
 I have a PlotterModel class in which contains all logic. This is where I get graphs points for  plotting, catch errors, and so on. This class allows not to transfer the calculation logic to the controller, thereby adhering to the MVC design pattern. 
 
-My code uses protocols that in Swift is something between interfaces and abstract classes. The IDifferentialEquation protocol stores the initial x, y values and methods for obtaining the value of the analytical solution, the derivative of a given function, and method returning discontinuities points array. Protocol INumericalMethod contains Grid class, which will contain plot points, IDifferentialEquation protocol field, which will contain equation we want to solve, and methods with calculation logic which inherited classes will implement.
+Code uses protocols that in Swift is something between interfaces and abstract classes. It allows to have non final fields and unimplemented methods. The IDifferentialEquation protocol stores the initial x, y values and methods for obtaining the value of the analytical solution, the derivative of a given function, and method returning discontinuities points array. Protocol INumericalMethod contains Grid class, which will contain plot points, IDifferentialEquation protocol field, which will contain equation we want to solve, and methods with calculation logic which inherited classes will implement.
 
 The protocol IDifferentialEquation is implemented by classes EulerMethod, ImprovedEulerMethod and RungeKuttaMethod. 
 

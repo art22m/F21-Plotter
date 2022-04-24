@@ -16,10 +16,6 @@ Implement using your favorite programming language, an application with a graphi
 4. Implement GUI that allow user to change $x_0, y_0, X, N$ and plot the graphs of exact solution, its numerical methods and local truncation errors.
 5. Implement GUI that allow user to change the range of grid steps to compare global truncation errors of numerical methods.
 
-### Analytical solution
-
-<img src="https://files.fm/thumb_show.php?i=tfuqhe32v" alt="Untitled" style="zoom: 67%;" />
-
 ### Technologies used, GUI description
 
 For this computational practicum, I have used Swift programming language and third-party library "Charts" as a graphing tool.
@@ -27,17 +23,17 @@ In this application Model-View-Controller design pattern is used, code is organi
 
 The app has two screens. The first screen is used to display plots of approximations obtained by numerical methods and plots of Local Truncation Errors. User is allowed to change $x_0, y_0, X, N$ values.
 
-<img src="https://files.fm/thumb_show.php?i=d92f6ezeu" alt="Untitled" style="zoom:50%;" />
+<img src="Screenshots/1.PNG"/>
 
 The second screen contains Global Truncation Errors plots. User is allowed to change the range of grid steps to compare global truncation errors of numerical methods.
 
-<img src="https://files.fm/thumb_show.php?i=axbbgt6xg" alt="Untitled" style="zoom:50%;" />
+<img src="Screenshots/2.PNG"/>
 
 Each screen has checkboxes that allow to show/hide plots describing a correspondent solution. Text fields in which the user enters the data described above. Plot button that displays plots based on data from text fields and checkboxes. The application also contains error handling, which prevents the user from entering incorrect data.
 
 ### UML diagram
 
-<img src="https://files.fm/thumb_show.php?i=thqbf4hr5" alt="Untitled"  />
+<img src="Screenshots/3.PNG"/>
 
 I have a PlotterModel class in which contains all logic. This is where I get graphs points for  plotting, catch errors, and so on. This class allows not to transfer the calculation logic to the controller, thereby adhering to the MVC design pattern. 
 

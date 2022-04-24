@@ -23,17 +23,17 @@ In this application Model-View-Controller design pattern is used, code is organi
 
 The app has two screens. The first screen is used to display plots of approximations obtained by numerical methods and plots of Local Truncation Errors. User is allowed to change $x_0, y_0, X, N$ values.
 
-<img src="Screenshots/1.PNG"/>
+<img src="Screenshots/1.png"/>
 
 The second screen contains Global Truncation Errors plots. User is allowed to change the range of grid steps to compare global truncation errors of numerical methods.
 
-<img src="Screenshots/2.PNG"/>
+<img src="Screenshots/2.png"/>
 
 Each screen has checkboxes that allow to show/hide plots describing a correspondent solution. Text fields in which the user enters the data described above. Plot button that displays plots based on data from text fields and checkboxes. The application also contains error handling, which prevents the user from entering incorrect data.
 
 ### UML diagram
 
-<img src="Screenshots/3.PNG"/>
+<img src="Screenshots/3.png"/>
 
 I have a PlotterModel class in which contains all logic. This is where I get graphs points for  plotting, catch errors, and so on. This class allows not to transfer the calculation logic to the controller, thereby adhering to the MVC design pattern. 
 

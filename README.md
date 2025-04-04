@@ -1,6 +1,4 @@
-# Computational Practicum F21
-
-### Murashko Artem BS20-02 - Variant 1
+# Application with a graphical interface that allows to investigate numerical methods for solving a differential equation.
 
 ---
 
